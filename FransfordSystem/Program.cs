@@ -1,13 +1,33 @@
+using FransfordSystem;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddMvc();
+
+string connString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+
+
+//Para hacer la conexion con la base que se encuentra la direccion en appsettings.json
+
+
+
+
+builder.Services.AddDbContext<FransforDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+//{
+ //   options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+//});
 
 
 
 
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
