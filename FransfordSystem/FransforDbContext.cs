@@ -18,6 +18,7 @@ namespace FransfordSystem
         public DbSet<Rol> Rol { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Cliente> Cliente { get; set; }
+        public DbSet<Categoria> Categoria { get; set; }
 
 
 
