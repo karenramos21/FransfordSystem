@@ -51,6 +51,9 @@ namespace FransfordSystem.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCliente"), 1L, 1);
 
+                    b.Property<int>("UserName")
+                        .HasColumnType("int");
+
                     b.Property<string>("apellidoCliente")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -67,7 +70,12 @@ namespace FransfordSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("usuarioId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("IdCliente");
+
+                    b.HasIndex("usuarioId");
 
                     b.ToTable("Cliente");
                 });
@@ -88,9 +96,8 @@ namespace FransfordSystem.Migrations
                     b.Property<int>("examenidExamen")
                         .HasColumnType("int");
 
-                    b.Property<string>("idExamen")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("idExamen")
+                        .HasColumnType("int");
 
                     b.Property<int>("valorMaximo")
                         .HasColumnType("int");
@@ -119,9 +126,8 @@ namespace FransfordSystem.Migrations
                     b.Property<int>("categoriaIdCategoria")
                         .HasColumnType("int");
 
-                    b.Property<string>("idCategoria")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("idCategoria")
+                        .HasColumnType("int");
 
                     b.Property<string>("nombreExamen")
                         .IsRequired()
@@ -132,64 +138,6 @@ namespace FransfordSystem.Migrations
                     b.HasIndex("categoriaIdCategoria");
 
                     b.ToTable("Examen");
-                });
-
-            modelBuilder.Entity("FransfordSystem.Models.Rol", b =>
-                {
-                    b.Property<int>("IdCliente")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCliente"), 1L, 1);
-
-                    b.Property<string>("descripcionRol")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("nombreRol")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdCliente");
-
-                    b.ToTable("Rol");
-                });
-
-            modelBuilder.Entity("FransfordSystem.Models.Trabajador", b =>
-                {
-                    b.Property<int>("IdTrabajador")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdTrabajador"), 1L, 1);
-
-                    b.Property<string>("apellidoTrabajador")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("correo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("cuentaBancaria")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("dui")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("genero")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("nombreTrabajador")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdTrabajador");
-
-                    b.ToTable("Trabajador");
                 });
 
             modelBuilder.Entity("FransfordSystem.Models.Usuario", b =>
@@ -243,6 +191,27 @@ namespace FransfordSystem.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("apellidoTrabajador")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("cuentaBancaria")
+                        .HasColumnType("int");
+
+                    b.Property<int>("dui")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("fechaNacimiento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("genero")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1)");
+
+                    b.Property<string>("nombreTrabajador")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -394,10 +363,19 @@ namespace FransfordSystem.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("FransfordSystem.Models.Cliente", b =>
+                {
+                    b.HasOne("FransfordSystem.Models.Usuario", "usuario")
+                        .WithMany("clientes")
+                        .HasForeignKey("usuarioId");
+
+                    b.Navigation("usuario");
+                });
+
             modelBuilder.Entity("FransfordSystem.Models.Descripcion", b =>
                 {
                     b.HasOne("FransfordSystem.Models.Examen", "examen")
-                        .WithMany()
+                        .WithMany("descripcion")
                         .HasForeignKey("examenidExamen")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -408,7 +386,7 @@ namespace FransfordSystem.Migrations
             modelBuilder.Entity("FransfordSystem.Models.Examen", b =>
                 {
                     b.HasOne("FransfordSystem.Models.Categoria", "categoria")
-                        .WithMany()
+                        .WithMany("examen")
                         .HasForeignKey("categoriaIdCategoria")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -465,6 +443,21 @@ namespace FransfordSystem.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("FransfordSystem.Models.Categoria", b =>
+                {
+                    b.Navigation("examen");
+                });
+
+            modelBuilder.Entity("FransfordSystem.Models.Examen", b =>
+                {
+                    b.Navigation("descripcion");
+                });
+
+            modelBuilder.Entity("FransfordSystem.Models.Usuario", b =>
+                {
+                    b.Navigation("clientes");
                 });
 #pragma warning restore 612, 618
         }

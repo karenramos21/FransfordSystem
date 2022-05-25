@@ -14,9 +14,11 @@ namespace FransfordSystem.Models
         [Required]
         public int idDescripcion { get; set; }
 
-        [Required]
-        public string idExamen { get; set; }
-        public virtual Examen examen { get; set; }
+        [Display(Name = "idExamen")]
+        [Required(ErrorMessage = "Este campo es obligatorio")]
+        public int idExamen { get; set; }
+        public Examen examen { get; set; }
+
 
         [Required(ErrorMessage = "Debe de ingresar la descripción del examen")]
         [StringLength(50, ErrorMessage = "No puede escribir más de 50 caracteres")]

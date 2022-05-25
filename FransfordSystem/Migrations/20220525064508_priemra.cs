@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FransfordSystem.Migrations
 {
-    public partial class primera : Migration
+    public partial class priemra : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,6 +28,12 @@ namespace FransfordSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    nombreTrabajador = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    apellidoTrabajador = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    fechaNacimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    genero = table.Column<string>(type: "nvarchar(1)", nullable: false),
+                    dui = table.Column<int>(type: "int", nullable: false),
+                    cuentaBancaria = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -60,54 +66,6 @@ namespace FransfordSystem.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categoria", x => x.IdCategoria);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Cliente",
-                columns: table => new
-                {
-                    IdCliente = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    nombreCliente = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    apellidoCliente = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    genero = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    dui = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Cliente", x => x.IdCliente);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Rol",
-                columns: table => new
-                {
-                    IdCliente = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    nombreRol = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    descripcionRol = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Rol", x => x.IdCliente);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Trabajador",
-                columns: table => new
-                {
-                    IdTrabajador = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    nombreTrabajador = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    apellidoTrabajador = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    genero = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    dui = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    correo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    cuentaBancaria = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Trabajador", x => x.IdTrabajador);
                 });
 
             migrationBuilder.CreateTable(
@@ -217,12 +175,35 @@ namespace FransfordSystem.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Cliente",
+                columns: table => new
+                {
+                    IdCliente = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserName = table.Column<int>(type: "int", nullable: false),
+                    usuarioId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    nombreCliente = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    apellidoCliente = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    genero = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    dui = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cliente", x => x.IdCliente);
+                    table.ForeignKey(
+                        name: "FK_Cliente_AspNetUsers_usuarioId",
+                        column: x => x.usuarioId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Examen",
                 columns: table => new
                 {
                     idExamen = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    idCategoria = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    idCategoria = table.Column<int>(type: "int", nullable: false),
                     categoriaIdCategoria = table.Column<int>(type: "int", nullable: false),
                     nombreExamen = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PrecioExamen = table.Column<float>(type: "real", nullable: false)
@@ -244,7 +225,7 @@ namespace FransfordSystem.Migrations
                 {
                     idDescripcion = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    idExamen = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    idExamen = table.Column<int>(type: "int", nullable: false),
                     examenidExamen = table.Column<int>(type: "int", nullable: false),
                     descripcionExamen = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     valorMinimo = table.Column<int>(type: "int", nullable: false),
@@ -301,6 +282,11 @@ namespace FransfordSystem.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Cliente_usuarioId",
+                table: "Cliente",
+                column: "usuarioId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Descripcion_examenidExamen",
                 table: "Descripcion",
                 column: "examenidExamen");
@@ -333,12 +319,6 @@ namespace FransfordSystem.Migrations
 
             migrationBuilder.DropTable(
                 name: "Descripcion");
-
-            migrationBuilder.DropTable(
-                name: "Rol");
-
-            migrationBuilder.DropTable(
-                name: "Trabajador");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

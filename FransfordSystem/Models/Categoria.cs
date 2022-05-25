@@ -9,6 +9,8 @@ namespace FransfordSystem.Models
         [Key]
         public int IdCategoria { get; set; }
 
+        public ICollection<Examen> examen { get; set; }
+
         //Nombre de la categoría
         [Display(Name = "Nombres de las categorías")]
         [RegularExpression(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙÑñ.-]+", ErrorMessage = "Ingrese nombres con caracteres válidos")]
@@ -20,5 +22,7 @@ namespace FransfordSystem.Models
         [RegularExpression(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙÑñ.-]+", ErrorMessage = "Ingrese nombres con caracteres válidos")]
         [Required(ErrorMessage = "Este campo es obligatorio")]
         public string tipoCategoria { get; set; }
+
+
     }
 }

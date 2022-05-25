@@ -9,6 +9,14 @@ namespace FransfordSystem.Models
         [Key]
         public int IdCliente { get; set; }
 
+
+        [Display(Name = "idUsuario")]
+        [Required(ErrorMessage = "Este campo es obligatorio")]
+        public int UserName { get; set; }
+        public Usuario usuario { get; set; }
+
+
+
         [Display(Name = "Nombres del Cliente")]
         [RegularExpression(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙÑñ.-]+", ErrorMessage = "Ingrese nombres validos")]
         [Required(ErrorMessage = "Este campo es obligatorio")]
