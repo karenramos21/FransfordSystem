@@ -4,14 +4,19 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Nuevo cliente</h1>
 
-<h4>Cliente</h4>
+<h4>Rellenar la siguiente información</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="dui" class="control-label"></label>
+                <input asp-for="dui" class="form-control" />
+                <span asp-validation-for="dui" class="text-danger"></span>
+            </div>           
             <div class="form-group">
                 <label asp-for="nombreCliente" class="control-label"></label>
                 <input asp-for="nombreCliente" class="form-control" />
@@ -23,26 +28,40 @@
                 <span asp-validation-for="apellidoCliente" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="fechaNacimiento" class="control-label"></label>
+                <input asp-for="fechaNacimiento" class="form-control" />
+                <span asp-validation-for="fechaNacimiento" class="text-danger"></span>
+            </div>
+            <!--
+            <div class="form-group">
                 <label asp-for="genero" class="control-label"></label>
-                <input asp-for="genero" class="form-control" />
+                <input asp-for="genero" type="radio" class="form-control" value="Femenino"> Femenino
+                <input asp-for="genero" type="radio" class="form-control" value="Masculino"> Masculino
+                <span asp-validation-for="genero" class="text-danger"></span>
+            </div>
+            -->
+             <div class="form-group">
+                <label asp-for="genero" class="control-label"></label>
+                <br />               
+                <input asp-for="genero" type="radio" value="Masculino" />&nbsp;&nbsp;&nbsp; Masculino               
+                <br />
+                <input asp-for="genero" type="radio" value="Femenino" />&nbsp;&nbsp;&nbsp; Femenino
                 <span asp-validation-for="genero" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="dui" class="control-label"></label>
-                <input asp-for="dui" class="form-control" />
-                <span asp-validation-for="dui" class="text-danger"></span>
-            </div>
+                <label asp-for="telefono" class="control-label"></label>
+                <input asp-for="telefono" class="form-control" />
+                <span asp-validation-for="telefono" class="text-danger"></span>
+            </div>         
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Crear" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Regresar a la lista de clientes</a>
 </div>
 
-<!--@section Scripts {-->
-<!--    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}-->
-<!--}-->
+

@@ -56,7 +56,7 @@ namespace FransfordSystem.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdCliente,nombreCliente,apellidoCliente,genero,dui")] Cliente cliente)
+        public async Task<IActionResult> Create([Bind("IdCliente,UserName,nombreCliente,apellidoCliente,fechaNacimiento,genero,telefono,dui")] Cliente cliente)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace FransfordSystem.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdCliente,nombreCliente,apellidoCliente,genero,dui")] Cliente cliente)
+        public async Task<IActionResult> Edit(int id, [Bind("IdCliente,UserName,nombreCliente,apellidoCliente,fechaNacimiento,genero,telefono,dui")] Cliente cliente)
         {
             if (id != cliente.IdCliente)
             {
