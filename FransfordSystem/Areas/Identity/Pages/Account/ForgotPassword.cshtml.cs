@@ -21,6 +21,7 @@ namespace FransfordSystem.Areas.Identity.Pages.Account
     {
         private readonly UserManager<Usuario> _userManager;
         private readonly IEmailSender _emailSender;
+        public string mensaje { get; set; }
 
         public ForgotPasswordModel(UserManager<Usuario> userManager, IEmailSender emailSender)
         {
@@ -46,25 +47,38 @@ namespace FransfordSystem.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
-            [EmailAddress]
+
+            
             public string Email { get; set; }
+            
+
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.FindByEmailAsync(Input.Email);
-                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                var userByEmail = await _userManager.FindByEmailAsync(Input.Email);
+                var userByUser = await _userManager.FindByNameAsync(Input.Email);
+
+                if (userByEmail == null || !(await _userManager.IsEmailConfirmedAsync(userByEmail)) )
                 {
-                    // Don't reveal that the user does not exist or is not confirmed
-                    return RedirectToPage("./ForgotPasswordConfirmation");
+                    mensaje = "El Correo No Se Encontro";
+                    return RedirectToPage("./ForgotPassword",mensaje);
+                }
+                else if (userByUser == null || !(await _userManager.IsEmailConfirmedAsync(userByUser)))
+                {
+                    mensaje = "El Usuario No Se Encontro";
+                    return RedirectToPage("./ForgotPassword",mensaje);
                 }
 
-               
                 
+                if (userByEmail != null)
+                {
+                    return RedirectToPage("./ForgotPasswordConfirmation", userByEmail);
+                }
 
-                return RedirectToPage("./ForgotPasswordConfirmation");
+                return RedirectToPage("./ForgotPasswordConfirmation",userByUser);
             }
 
             return Page();

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FransfordSystem.Migrations
 {
-    public partial class priemra : Migration
+    public partial class Primera : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -184,6 +184,7 @@ namespace FransfordSystem.Migrations
                     usuarioId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     nombreCliente = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     apellidoCliente = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    fechaNacimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
                     genero = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     dui = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },

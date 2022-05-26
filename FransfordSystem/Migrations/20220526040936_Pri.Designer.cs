@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FransfordSystem.Migrations
 {
     [DbContext(typeof(FransforDbContext))]
-    [Migration("20220525064508_priemra")]
-    partial class priemra
+    [Migration("20220526040936_Pri")]
+    partial class Pri
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -63,6 +63,9 @@ namespace FransfordSystem.Migrations
                     b.Property<string>("dui")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("fechaNacimiento")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("genero")
                         .IsRequired()
@@ -195,24 +198,21 @@ namespace FransfordSystem.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("apellidoTrabajador")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("cuentaBancaria")
+                    b.Property<int?>("cuentaBancaria")
                         .HasColumnType("int");
 
-                    b.Property<int>("dui")
+                    b.Property<int?>("dui")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("fechaNacimiento")
+                    b.Property<DateTime?>("fechaNacimiento")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("genero")
-                        .IsRequired()
                         .HasColumnType("nvarchar(1)");
 
                     b.Property<string>("nombreTrabajador")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

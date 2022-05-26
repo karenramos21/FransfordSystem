@@ -27,10 +27,9 @@ namespace FransfordSystem.Models
         [Required(ErrorMessage = "Este campo es obligatorio")]
         public string apellidoCliente { get; set; }
 
-        //[Display(Name = "Fecha de nacimiento")]
-        //[RegularExpression( ,ErrorMessage = "ingrese una fecha de nacimiento valida")]
-        //[Required(ErrorMessage = "Este campo es obligatorio")]
-        //public DateTime fechaNacimiento { get; set; }
+        [Display(Name = "Fecha de nacimiento")]
+        [Required(ErrorMessage = "Este campo es obligatorio")]
+        public DateTime fechaNacimiento { get; set; }
 
         [Display(Name = "Genero")]
         [RegularExpression(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙÑñ.-]+", ErrorMessage = "Ingrese un genero valido")]
@@ -41,6 +40,8 @@ namespace FransfordSystem.Models
         [RegularExpression(@"^[0-9]{8}-[0-9]{1}$", ErrorMessage = "El formato de DUI no es correcto, asegurese de agregar el guion")]
         [Required(ErrorMessage = "Este campo es obligatorio")]
         public string dui { get; set; }
+
+
 
 
 

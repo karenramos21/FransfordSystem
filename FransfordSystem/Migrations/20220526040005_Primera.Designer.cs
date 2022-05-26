@@ -4,6 +4,7 @@ using FransfordSystem;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FransfordSystem.Migrations
 {
     [DbContext(typeof(FransforDbContext))]
-    partial class FransforDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220526040005_Primera")]
+    partial class Primera
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -196,21 +198,24 @@ namespace FransfordSystem.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("apellidoTrabajador")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("cuentaBancaria")
+                    b.Property<int>("cuentaBancaria")
                         .HasColumnType("int");
 
-                    b.Property<int?>("dui")
+                    b.Property<int>("dui")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("fechaNacimiento")
+                    b.Property<DateTime>("fechaNacimiento")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("genero")
+                        .IsRequired()
                         .HasColumnType("nvarchar(1)");
 
                     b.Property<string>("nombreTrabajador")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

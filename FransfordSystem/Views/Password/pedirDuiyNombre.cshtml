@@ -1,7 +1,7 @@
-﻿@page
-@model FransfordSystem.ViewModels.OlvidePassViewModel
+﻿@model FransfordSystem.ViewModels.VerificarDuiViewModel
 @{
-    ViewData["Title"] = "Forgot password confirmation";
+    ViewData["Title"] = "pedirDuiyNombre";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <body class="hold-transition login-page">
@@ -12,10 +12,11 @@
       </div>
       <div class="card-body">
         <p class="login-box-msg">Solicitud de Recuperacion</p>
-        <form id="olvide" method="post">
+        <form action="pedirDuiyNombrePost" id="olvide" method="post">
+            <input asp-for="dato" type="hidden" value="@Model.dato"/>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="DUI">
+            <input asp-for="dui" type="text" class="form-control" placeholder="DUI">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
@@ -23,7 +24,7 @@
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Nombre">
+            <input asp-for="nombre" type="text" class="form-control" placeholder="Nombre">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
@@ -32,6 +33,7 @@
           </div>
           <div class="row">
             <div class="col-12">
+                <p>@Model.dato</p>
               <button type="submit" class="btn btn-primary btn-block">Verificar</button>
             </div>
             <!-- /.col -->
