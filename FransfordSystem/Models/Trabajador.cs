@@ -26,10 +26,12 @@ namespace FransfordSystem.Models
         [Required(ErrorMessage = "Este campo es obligatorio")]
         public string apellidoTrabajador { get; set; }
 
-        //[Display(Name = "Fecha de nacimiento")]
-        //[RegularExpression( ,ErrorMessage = "ingrese una fecha de nacimiento valida")]
-        //[Required(ErrorMessage = "Este campo es obligatorio")]
-        //public DateTime fechaNacimiento { get; set; }
+        [Display(Name = "Fecha de nacimiento")]
+        //[RegularExpression(@"\b(?<day>\d{1,2})/(?<month>\d{1,2})/(?<year>\d{2,4})\b", ErrorMessage = "ingrese una fecha de nacimiento valida")]
+        [Required(ErrorMessage = "Este campo es obligatorio")]
+        [DataType(DataType.Date)]
+        [Column(TypeName = "Date")]
+        public DateTime fechaNacimiento { get; set; }
 
         [Display(Name = "Genero")]
         [RegularExpression(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙÑñ.-]+" ,ErrorMessage = "Ingrese un genero valido")]
