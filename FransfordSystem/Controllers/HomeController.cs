@@ -23,6 +23,16 @@ namespace FransfordSystem.Controllers
             return View();
         }
 
+        public IActionResult Home()
+        {
+            return View();
+        }
+
+        public ActionResult IndexTrabajador()
+        {
+            return RedirectToAction("Index", "Trabajadores");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
