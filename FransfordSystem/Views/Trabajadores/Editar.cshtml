@@ -4,9 +4,9 @@
     ViewData["Title"] = "Editar";
 }
 
-<h1>Editar</h1>
+<h1>Editar los datos del trabajador</h1>
 
-<h4>Trabajador</h4>
+<h4>Modifique uno o varios campos del trabajador</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -30,8 +30,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="genero" class="control-label"></label>
-                <input asp-for="genero" type="radio" class="form-control" value="Femenino"> Femenino
-                <input asp-for="genero" type="radio" class="form-control" value="Masculino"> Masculino
+                <br />               
+                <input asp-for="genero" type="radio" value="Masculino" />&nbsp;&nbsp;&nbsp; Masculino               
+                <br />
+                <input asp-for="genero" type="radio" value="Femenino" />&nbsp;&nbsp;&nbsp; Femenino
                 <span asp-validation-for="genero" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -50,7 +52,7 @@
                 <span asp-validation-for="cuentaBancaria" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-success" />
             </div>
         </form>
     </div>
