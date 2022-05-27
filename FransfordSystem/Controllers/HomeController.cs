@@ -15,7 +15,7 @@ namespace FransfordSystem.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View("Home");
         }
 
         public IActionResult Privacy()
@@ -26,6 +26,11 @@ namespace FransfordSystem.Controllers
         public IActionResult Home()
         {
             return View();
+        }
+
+        public ActionResult Inicio()
+        {
+            return View("Home");
         }
 
         public ActionResult IndexTrabajador()
