@@ -1,9 +1,3 @@
-﻿table.tabla_sin {
-    border-collapse: collapse;
-    border: none;
-}
-
-
-td.celda_sin {
-    padding: 0;
+﻿#letranormal {
+    font-weight: bold;
 }
