@@ -14,11 +14,9 @@ namespace FransfordSystem.Models
         [Required]
         public int idExamen { get; set; }
 
-        /*
         [Required]
         public string idCategoria { get; set; }
         public virtual Categoria categoria { get; set; }
-        */
 
         [Display(Name = "Nombre de examen")]
         [Required(ErrorMessage = "Este campo es obligatorio")]
