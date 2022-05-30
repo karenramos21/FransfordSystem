@@ -1,6 +1,9 @@
 ﻿using FransfordSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using FransfordSystem.Areas.Identity.Pages.Account.Manage;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace FransfordSystem.Controllers
 {
@@ -15,7 +18,13 @@ namespace FransfordSystem.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+
+            return Redirect("Identity/Account/Login");
+            
         }
 
         public IActionResult Privacy()
@@ -28,5 +37,10 @@ namespace FransfordSystem.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        
+
+
+
     }
 }
