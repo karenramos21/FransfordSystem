@@ -11,6 +11,9 @@ namespace FransfordSystem.Models
         public int IdCliente { get; set; }
 
 
+
+
+
         [Display(Name = "idUsuario")]       
         public int? UserName { get; set; }
         public Usuario? usuario { get; set; }
@@ -27,7 +30,6 @@ namespace FransfordSystem.Models
         public string apellidoCliente { get; set; }
 
         [Display(Name = "Fecha de nacimiento")]
-        //[RegularExpression(@"\b(?<day>\d{1,2})/(?<month>\d{1,2})/(?<year>\d{2,4})\b", ErrorMessage = "ingrese una fecha de nacimiento valida")]
         [Required(ErrorMessage = "Este campo es obligatorio")]
         [DataType(DataType.Date)]
         [Column(TypeName = "Date")]
@@ -45,6 +47,8 @@ namespace FransfordSystem.Models
         [Display(Name = "DUI")]
         [RegularExpression(@"^[0-9]{8}-[0-9]{1}$", ErrorMessage = "El formato de DUI no es correcto, asegúrese de agregar el guión")]
         public string? dui { get; set; }
+
+
 
 
 
