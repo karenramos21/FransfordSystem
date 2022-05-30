@@ -4,6 +4,7 @@ using FransfordSystem;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FransfordSystem.Migrations
 {
     [DbContext(typeof(FransforDbContext))]
-    partial class FransforDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220526014307_db")]
+    partial class db
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,10 +53,7 @@ namespace FransfordSystem.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCliente"), 1L, 1);
 
-
-
-
-                    b.Property<int?>("UserName")
+                    b.Property<int>("UserName")
                         .HasColumnType("int");
 
                     b.Property<string>("apellidoCliente")
@@ -62,12 +61,11 @@ namespace FransfordSystem.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("dui")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
 
                     b.Property<DateTime>("fechaNacimiento")
                         .HasColumnType("Date");
-
 
                     b.Property<string>("genero")
                         .IsRequired()
@@ -77,21 +75,19 @@ namespace FransfordSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-
                     b.Property<string>("telefono")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("usuarioIdUsuario")
+                    b.Property<int>("usuarioIdUsuario")
                         .HasColumnType("int");
 
                     b.HasKey("IdCliente");
 
                     b.HasIndex("usuarioIdUsuario");
 
-
                     b.ToTable("Cliente");
                 });
-
 
             modelBuilder.Entity("FransfordSystem.Models.Rol", b =>
                 {
@@ -149,12 +145,10 @@ namespace FransfordSystem.Migrations
                     b.HasKey("IdTrabajador");
 
                     b.ToTable("Trabajador");
-
                 });
 
             modelBuilder.Entity("FransfordSystem.Models.Usuario", b =>
                 {
-
                     b.Property<int>("IdUsuario")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
@@ -177,9 +171,10 @@ namespace FransfordSystem.Migrations
             modelBuilder.Entity("FransfordSystem.Models.Cliente", b =>
                 {
                     b.HasOne("FransfordSystem.Models.Usuario", "usuario")
-
                         .WithMany()
-                        .HasForeignKey("usuarioIdUsuario");
+                        .HasForeignKey("usuarioIdUsuario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("usuario");
                 });

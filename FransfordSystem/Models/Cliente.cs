@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FransfordSystem.Models
 {
@@ -10,11 +11,12 @@ namespace FransfordSystem.Models
         public int IdCliente { get; set; }
 
 
-        [Display(Name = "idUsuario")]
-        [Required(ErrorMessage = "Este campo es obligatorio")]
-        public int UserName { get; set; }
-        public Usuario usuario { get; set; }
 
+
+
+        [Display(Name = "idUsuario")]       
+        public int? UserName { get; set; }
+        public Usuario? usuario { get; set; }
 
 
         [Display(Name = "Nombres del Cliente")]
@@ -29,6 +31,8 @@ namespace FransfordSystem.Models
 
         [Display(Name = "Fecha de nacimiento")]
         [Required(ErrorMessage = "Este campo es obligatorio")]
+        [DataType(DataType.Date)]
+        [Column(TypeName = "Date")]
         public DateTime fechaNacimiento { get; set; }
 
         [Display(Name = "Genero")]
@@ -36,10 +40,13 @@ namespace FransfordSystem.Models
         [Required(ErrorMessage = "Este campo es obligatorio")]
         public string genero { get; set; }
 
+        [Display(Name = "Telefono")]
+        [RegularExpression(@"^[2,6,7]\d{3}-?\d{4}$", ErrorMessage = "Ingrese un número telefónico válido")]
+        public string? telefono { get; set; }
+
         [Display(Name = "DUI")]
-        [RegularExpression(@"^[0-9]{8}-[0-9]{1}$", ErrorMessage = "El formato de DUI no es correcto, asegurese de agregar el guion")]
-        [Required(ErrorMessage = "Este campo es obligatorio")]
-        public string dui { get; set; }
+        [RegularExpression(@"^[0-9]{8}-[0-9]{1}$", ErrorMessage = "El formato de DUI no es correcto, asegúrese de agregar el guión")]
+        public string? dui { get; set; }
 
 
 
