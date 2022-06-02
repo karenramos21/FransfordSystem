@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FransfordSystem.Migrations
 {
     [DbContext(typeof(FransforDbContext))]
-    [Migration("20220530024412_primera")]
-    partial class primera
+    [Migration("20220602203329_migra5")]
+    partial class migra5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -130,7 +130,7 @@ namespace FransfordSystem.Migrations
                     b.Property<float>("PrecioExamen")
                         .HasColumnType("real");
 
-                    b.Property<int>("categoriaIdCategoria")
+                    b.Property<int?>("categoriaIdCategoria")
                         .HasColumnType("int");
 
                     b.Property<int>("idCategoria")
@@ -391,9 +391,7 @@ namespace FransfordSystem.Migrations
                 {
                     b.HasOne("FransfordSystem.Models.Categoria", "categoria")
                         .WithMany("examen")
-                        .HasForeignKey("categoriaIdCategoria")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("categoriaIdCategoria");
 
                     b.Navigation("categoria");
                 });

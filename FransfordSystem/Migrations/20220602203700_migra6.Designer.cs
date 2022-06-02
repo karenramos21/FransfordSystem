@@ -4,6 +4,7 @@ using FransfordSystem;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FransfordSystem.Migrations
 {
     [DbContext(typeof(FransforDbContext))]
-    partial class FransforDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220602203700_migra6")]
+    partial class migra6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,7 +127,7 @@ namespace FransfordSystem.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idExamen"), 1L, 1);
 
-                    b.Property<float?>("PrecioExamen")
+                    b.Property<float>("PrecioExamen")
                         .HasColumnType("real");
 
                     b.Property<int?>("categoriaIdCategoria")
