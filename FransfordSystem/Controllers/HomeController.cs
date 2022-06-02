@@ -1,6 +1,9 @@
 ﻿using FransfordSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using FransfordSystem.Areas.Identity.Pages.Account.Manage;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace FransfordSystem.Controllers
 {
@@ -15,33 +18,47 @@ namespace FransfordSystem.Controllers
 
         public IActionResult Index()
         {
-            return View("Home");
+            if (User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+
+            return Redirect("Identity/Account/Login");
+            
         }
+
+        public IActionResult Login()
+        {
+            return View();
+
+        }
+
+
+
+
 
         public IActionResult Privacy()
         {
             return View();
         }
 
-        public IActionResult Home()
+        public ActionResult IndexCliente()
         {
-            return View();
+            return RedirectToAction("Index", "Clientes");
         }
-
-        public ActionResult Inicio()
-        {
-            return View("Home");
-        }
-
-        public ActionResult IndexTrabajador()
-        {
-            return RedirectToAction("Index", "Trabajadores");
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public ActionResult IndexUsuario()
+        {
+            return RedirectToAction("Index", "Usuario");
+        }
+
+
+
+
     }
 }

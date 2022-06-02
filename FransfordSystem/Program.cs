@@ -1,14 +1,22 @@
 using FransfordSystem;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using FransfordSystem.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+string connString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<FransforDbContext>(options =>
+    options.UseSqlServer(connString));;
+
+builder.Services.AddDefaultIdentity<Usuario>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<FransforDbContext>();;
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 builder.Services.AddMvc();
 
-string connString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 
 
@@ -42,10 +50,18 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapRazorPages(
+    
+    
+    );
+
+
+
 
 app.Run();
