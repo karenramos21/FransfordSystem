@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FransfordSystem;
 using FransfordSystem.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace FransfordSystem.Controllers
 {
     public class ClientesController : Controller
     {
         private readonly FransforDbContext _context;
-
-        public ClientesController(FransforDbContext context)
+        private readonly UserManager<Usuario> _userManager;
+        
+        public ClientesController(FransforDbContext context, UserManager<Usuario> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Clientes
@@ -42,12 +45,15 @@ namespace FransfordSystem.Controllers
                 return NotFound();
             }
 
-            return View(cliente);
+            return  View(cliente);
         }
 
         // GET: Clientes/Create
         public IActionResult Create()
         {
+
+            var user =  _userManager.GetUserId(HttpContext.User); 
+
             return View();
         }
 

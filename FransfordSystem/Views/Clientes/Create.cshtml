@@ -1,5 +1,4 @@
 ﻿@model FransfordSystem.Models.Cliente
-
 @{
     ViewData["Title"] = "Create";
 }
@@ -15,6 +14,9 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="dui" class="control-label"></label>
+                <input asp-for="UserName" value="@User.Identity.Name" type="hidden" />
+              
+
                 <input asp-for="dui" class="form-control" placeholder="Ej. 00231183-2"/>
                 <span asp-validation-for="dui" class="text-danger"></span>
             </div>           
