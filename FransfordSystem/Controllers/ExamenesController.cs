@@ -51,7 +51,7 @@ namespace FransfordSystem.Controllers
             //Genera lista de categorias
             List<Categoria> categoriaLista = new List<Categoria>();
             categoriaLista = (from categoria in _context.Categoria select categoria).ToList();
-            categoriaLista.Insert(0, new Categoria { IdCategoria = 0, nombreCategoria = "Select" });
+            categoriaLista.Insert(0, new Categoria { IdCategoria = 0, nombreCategoria = "Seleccionar" });
             ViewBag.categoriaDeLista = categoriaLista;
             return View();
         }
@@ -85,6 +85,12 @@ namespace FransfordSystem.Controllers
             {
                 return NotFound();
             }
+            //Genera lista de categorias
+            List<Categoria> categoriaLista = new List<Categoria>();
+            categoriaLista = (from categoria in _context.Categoria select categoria).ToList();
+            categoriaLista.Insert(0, new Categoria { IdCategoria = 0, nombreCategoria = "Seleccionar" });
+            ViewBag.categoriaDeLista = categoriaLista;
+
             return View(examen);
         }
 
