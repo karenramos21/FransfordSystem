@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FransfordSystem.Migrations
 {
     [DbContext(typeof(FransforDbContext))]
-    [Migration("20220602203329_migra5")]
-    partial class migra5
+    [Migration("20220603143232_a")]
+    partial class a
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -100,16 +100,16 @@ namespace FransfordSystem.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("examenidExamen")
+                    b.Property<int?>("examenidExamen")
                         .HasColumnType("int");
 
                     b.Property<int>("idExamen")
                         .HasColumnType("int");
 
-                    b.Property<int>("valorMaximo")
+                    b.Property<int?>("valorMaximo")
                         .HasColumnType("int");
 
-                    b.Property<int>("valorMinimo")
+                    b.Property<int?>("valorMinimo")
                         .HasColumnType("int");
 
                     b.HasKey("idDescripcion");
@@ -127,7 +127,7 @@ namespace FransfordSystem.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idExamen"), 1L, 1);
 
-                    b.Property<float>("PrecioExamen")
+                    b.Property<float?>("PrecioExamen")
                         .HasColumnType("real");
 
                     b.Property<int?>("categoriaIdCategoria")
@@ -380,9 +380,7 @@ namespace FransfordSystem.Migrations
                 {
                     b.HasOne("FransfordSystem.Models.Examen", "examen")
                         .WithMany("descripcion")
-                        .HasForeignKey("examenidExamen")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("examenidExamen");
 
                     b.Navigation("examen");
                 });

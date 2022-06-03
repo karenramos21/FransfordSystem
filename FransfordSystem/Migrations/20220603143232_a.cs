@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FransfordSystem.Migrations
 {
-    public partial class migra : Migration
+    public partial class a : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -206,9 +206,9 @@ namespace FransfordSystem.Migrations
                     idExamen = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     idCategoria = table.Column<int>(type: "int", nullable: false),
-                    categoriaIdCategoria = table.Column<int>(type: "int", nullable: false),
+                    categoriaIdCategoria = table.Column<int>(type: "int", nullable: true),
                     nombreExamen = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PrecioExamen = table.Column<float>(type: "real", nullable: false)
+                    PrecioExamen = table.Column<float>(type: "real", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -217,8 +217,7 @@ namespace FransfordSystem.Migrations
                         name: "FK_Examen_Categoria_categoriaIdCategoria",
                         column: x => x.categoriaIdCategoria,
                         principalTable: "Categoria",
-                        principalColumn: "IdCategoria",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "IdCategoria");
                 });
 
             migrationBuilder.CreateTable(
@@ -228,10 +227,10 @@ namespace FransfordSystem.Migrations
                     idDescripcion = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     idExamen = table.Column<int>(type: "int", nullable: false),
-                    examenidExamen = table.Column<int>(type: "int", nullable: false),
+                    examenidExamen = table.Column<int>(type: "int", nullable: true),
                     descripcionExamen = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    valorMinimo = table.Column<int>(type: "int", nullable: false),
-                    valorMaximo = table.Column<int>(type: "int", nullable: false)
+                    valorMinimo = table.Column<int>(type: "int", nullable: true),
+                    valorMaximo = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -240,8 +239,7 @@ namespace FransfordSystem.Migrations
                         name: "FK_Descripcion_Examen_examenidExamen",
                         column: x => x.examenidExamen,
                         principalTable: "Examen",
-                        principalColumn: "idExamen",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "idExamen");
                 });
 
             migrationBuilder.CreateIndex(
