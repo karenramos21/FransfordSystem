@@ -17,7 +17,7 @@ namespace FransfordSystem.Models
         [Display(Name = "idExamen")]
         [Required(ErrorMessage = "Este campo es obligatorio")]
         public int idExamen { get; set; }
-        public Examen examen { get; set; }
+        public Examen? examen { get; set; }
 
 
         [Required(ErrorMessage = "Debe de ingresar la descripción del examen")]
@@ -25,12 +25,12 @@ namespace FransfordSystem.Models
         [Display(Name = "Descripcion del examen")]
         public string descripcionExamen { get; set; }
 
-        [Required]
+       
         [RegularExpression(@"^[0-9]{2}$", ErrorMessage = "Valor invalido, debe ser de 0 a 15")]
-        public int valorMinimo { get; set; }
+        public int? valorMinimo { get; set; }
 
-        [Required]
+        
         [RegularExpression(@"^[0-9]{2}$", ErrorMessage = "Valor invalido, debe ser de 0 a 15")]
-        public int valorMaximo { get; set; }
+        public int? valorMaximo { get; set; }
     }
 }

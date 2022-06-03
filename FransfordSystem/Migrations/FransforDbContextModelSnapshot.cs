@@ -98,16 +98,16 @@ namespace FransfordSystem.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("examenidExamen")
+                    b.Property<int?>("examenidExamen")
                         .HasColumnType("int");
 
                     b.Property<int>("idExamen")
                         .HasColumnType("int");
 
-                    b.Property<int>("valorMaximo")
+                    b.Property<int?>("valorMaximo")
                         .HasColumnType("int");
 
-                    b.Property<int>("valorMinimo")
+                    b.Property<int?>("valorMinimo")
                         .HasColumnType("int");
 
                     b.HasKey("idDescripcion");
@@ -378,9 +378,7 @@ namespace FransfordSystem.Migrations
                 {
                     b.HasOne("FransfordSystem.Models.Examen", "examen")
                         .WithMany("descripcion")
-                        .HasForeignKey("examenidExamen")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("examenidExamen");
 
                     b.Navigation("examen");
                 });

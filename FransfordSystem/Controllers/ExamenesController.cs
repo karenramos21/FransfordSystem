@@ -67,7 +67,7 @@ namespace FransfordSystem.Controllers
             {
                 _context.Add(examen);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Create));
             }
             return View(examen);
         }
