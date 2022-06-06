@@ -203,11 +203,11 @@ namespace FransfordSystem.Migrations
                     b.Property<int?>("cuentaBancaria")
                         .HasColumnType("int");
 
-                    b.Property<int?>("dui")
-                        .HasColumnType("int");
+                    b.Property<string>("dui")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("fechaNacimiento")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime>("fechaNacimiento")
+                        .HasColumnType("Date");
 
                     b.Property<string>("genero")
                         .HasColumnType("nvarchar(1)");

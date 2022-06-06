@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FransfordSystem.Migrations
 {
     [DbContext(typeof(FransforDbContext))]
-    [Migration("20220530024412_primera")]
-    partial class primera
+    [Migration("20220606020323_Primera")]
+    partial class Primera
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -205,11 +205,11 @@ namespace FransfordSystem.Migrations
                     b.Property<int?>("cuentaBancaria")
                         .HasColumnType("int");
 
-                    b.Property<int?>("dui")
-                        .HasColumnType("int");
+                    b.Property<string>("dui")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("fechaNacimiento")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime>("fechaNacimiento")
+                        .HasColumnType("Date");
 
                     b.Property<string>("genero")
                         .HasColumnType("nvarchar(1)");
