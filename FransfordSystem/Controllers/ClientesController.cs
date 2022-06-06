@@ -73,6 +73,10 @@ namespace FransfordSystem.Controllers
             return View(cliente);
         }
 
+
+
+
+
         // GET: Clientes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

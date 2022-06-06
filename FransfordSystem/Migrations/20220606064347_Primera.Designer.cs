@@ -4,6 +4,7 @@ using FransfordSystem;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FransfordSystem.Migrations
 {
     [DbContext(typeof(FransforDbContext))]
-    partial class FransforDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220606064347_Primera")]
+    partial class Primera
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,16 +100,16 @@ namespace FransfordSystem.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("examenidExamen")
+                    b.Property<int>("examenidExamen")
                         .HasColumnType("int");
 
                     b.Property<int>("idExamen")
                         .HasColumnType("int");
 
-                    b.Property<int?>("valorMaximo")
+                    b.Property<int>("valorMaximo")
                         .HasColumnType("int");
 
-                    b.Property<int?>("valorMinimo")
+                    b.Property<int>("valorMinimo")
                         .HasColumnType("int");
 
                     b.HasKey("idDescripcion");
@@ -125,10 +127,10 @@ namespace FransfordSystem.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idExamen"), 1L, 1);
 
-                    b.Property<float?>("PrecioExamen")
+                    b.Property<float>("PrecioExamen")
                         .HasColumnType("real");
 
-                    b.Property<int?>("categoriaIdCategoria")
+                    b.Property<int>("categoriaIdCategoria")
                         .HasColumnType("int");
 
                     b.Property<int>("idCategoria")
@@ -378,7 +380,9 @@ namespace FransfordSystem.Migrations
                 {
                     b.HasOne("FransfordSystem.Models.Examen", "examen")
                         .WithMany("descripcion")
-                        .HasForeignKey("examenidExamen");
+                        .HasForeignKey("examenidExamen")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("examen");
                 });
@@ -387,7 +391,9 @@ namespace FransfordSystem.Migrations
                 {
                     b.HasOne("FransfordSystem.Models.Categoria", "categoria")
                         .WithMany("examen")
-                        .HasForeignKey("categoriaIdCategoria");
+                        .HasForeignKey("categoriaIdCategoria")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("categoria");
                 });

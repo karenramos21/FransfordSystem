@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FransfordSystem.ViewModels
 {
-    public class RegistrarUsuarioViewModel
+    public class EditarViewModel
     {
         [Display(Name = "Nombres del Trabajador")]
         [RegularExpression(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙÑñ.-]+", ErrorMessage = "Ingrese nombres validos")]
@@ -49,15 +48,19 @@ namespace FransfordSystem.ViewModels
         [Display(Name = "Email")]
         public string correo { get; set; }
 
+
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string contra { get; set; }
+        public string id { get; set; }
 
-
+        [Display(Name = "Nombres de Usuario")]
+        [RegularExpression(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙÑñ.-]+", ErrorMessage = "Ingrese nombres validos")]
+        [Required(ErrorMessage = "Este campo es obligatorio")]
+        public string nombreUsuario { get; set; }
 
 
 
     }
+
+
+
 }

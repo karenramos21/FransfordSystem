@@ -98,6 +98,44 @@ namespace FransfordSystem.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+
+          //  [Display(Name = "Nombres del Trabajador")]
+          //  [RegularExpression(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙÑñ.-]+", ErrorMessage = "Ingrese nombres validos")]
+          //  [Required(ErrorMessage = "Este campo es obligatorio")]
+           //  public string? nombreTrabajador { get; set; }
+
+
+
+           //  [Display(Name = "Apellidos del trabajador")]
+           //  [RegularExpression(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙÑñ.-]+", ErrorMessage = "ingrese apellidos validos")]
+            // [Required(ErrorMessage = "Este campo es obligatorio")]
+             // public string? apellidoTrabajador { get; set; }
+
+           //   [Display(Name = "Fecha de nacimiento")]
+           //  [Required(ErrorMessage = "Este campo es obligatorio")]
+           //  public DateTime? fechaNacimiento { get; set; }
+//
+          //   [Display(Name = "Genero")]
+          //   [RegularExpression(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙÑñ.-]+", ErrorMessage = "Ingrese un genero valido")]
+          //   [Required(ErrorMessage = "Este campo es obligatorio")]
+           //  public char? genero { get; set; }
+
+
+         //    [Display(Name = "DUI")]
+          //    [RegularExpression(@"^[0-9]{8}-[0-9]{1}$", ErrorMessage = "El formato de DUI no es correcto, asegúrese de agregar el guión")]
+           //  public string? dui { get; set; }
+
+          //  [Display(Name = "Cuenta Bancaria")]
+           // [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "ingrese una cuenta bancaria valida")]
+           // [Required(ErrorMessage = "Este campo es obligatorio")]
+          //  public int? cuentaBancaria { get; set; }
+
+
+         // [Display(Name = "Nombres de Usuario")]
+           //   [RegularExpression(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙÑñ.-]+", ErrorMessage = "Ingrese nombres validos")]
+           // [Required(ErrorMessage = "Este campo es obligatorio")]
+            //  public string? nombreUsuario { get; set; }
         }
 
 
@@ -117,8 +155,9 @@ namespace FransfordSystem.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                
                 var result = await _userManager.CreateAsync(user, Input.Password);
-
+             
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
