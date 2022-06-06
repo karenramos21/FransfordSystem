@@ -28,6 +28,8 @@ namespace FransfordSystem.Models
         public string nombreExamen { get; set; }
 
         [Display(Name = "Precio del examen")]
+        [Range(0, 999.99)]
+        [Required(ErrorMessage = "Este campo es obligatorio, ingrese cantidades entre 0 a 999.99")]
         //[RegularExpression(@"^[0-9]{3}.[0-9]{2}$", ErrorMessage = "Ingrese una cantidad valida")]
         public float? PrecioExamen { get; set; }
     }
