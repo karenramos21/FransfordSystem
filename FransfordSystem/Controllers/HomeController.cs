@@ -33,6 +33,12 @@ namespace FransfordSystem.Controllers
 
         }
 
+        public IActionResult Desarrollo()
+        {
+            return View();
+
+        }
+
 
 
 

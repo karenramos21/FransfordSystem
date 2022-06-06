@@ -56,10 +56,6 @@ namespace FransfordSystem.ViewModels
         public string contra { get; set; }
 
 
-        [Display(Name = "Nombres de Usuario")]
-        [RegularExpression(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙÑñ.-]+", ErrorMessage = "Ingrese nombres validos")]
-        [Required(ErrorMessage = "Este campo es obligatorio")]
-        public string nombreUsuario { get; set; }
 
 
 

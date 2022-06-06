@@ -44,8 +44,8 @@ namespace FransfordSystem.Controllers
             if (ModelState.IsValid)
             {
                 Usuario usuario = new Usuario();
-                usuario.nombreTrabajador = nuevo.nombreUsuario;
-                usuario.UserName = nuevo.nombreUsuario;
+                usuario.nombreTrabajador = nuevo.nombre;
+                usuario.UserName = nuevo.correo;
                 usuario.fechaNacimiento = nuevo.fechaNac;
                 usuario.apellidoTrabajador = nuevo.apellido;
                 usuario.Email = nuevo.correo;
@@ -96,7 +96,7 @@ namespace FransfordSystem.Controllers
             EditarViewModel editUsu = new EditarViewModel();
             editUsu.id = usuario.Id;
             editUsu.nombre = usuario.nombreTrabajador;
-            editUsu.nombreUsuario = usuario.UserName;
+            editUsu.nombreUsuario = usuario.Email;
             editUsu.fechaNac = usuario.fechaNacimiento;
             editUsu.apellido = usuario.apellidoTrabajador;
             editUsu.correo = usuario.Email;
@@ -119,7 +119,7 @@ namespace FransfordSystem.Controllers
 
                 Usuario usuario = await _userManager.FindByIdAsync(nuevo.id);
                 usuario.nombreTrabajador = nuevo.nombre;
-                usuario.UserName = nuevo.nombreUsuario;
+                usuario.UserName = nuevo.correo;
                 usuario.fechaNacimiento = nuevo.fechaNac;
                 usuario.apellidoTrabajador = nuevo.apellido;
                 usuario.Email = nuevo.correo;
@@ -134,5 +134,41 @@ namespace FransfordSystem.Controllers
         }
 
 
+        public async Task<IActionResult> Delete(string? id)
+        {
+            if (id == null || _context.Usuario == null)
+            {
+                return NotFound();
+            }
+
+            var usuario = await _context.Usuario
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return View(usuario);
+        }
+
+        // POST: Clientes/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            if (_context.Usuario == null)
+            {
+                return Problem("Entity set 'FransforDbContext.Usuario'  is null.");
+            }
+            var usuario = await _context.Usuario.FindAsync(id);
+            if (usuario != null)
+            {
+                _context.Usuario.Remove(usuario);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        
     }
 }
