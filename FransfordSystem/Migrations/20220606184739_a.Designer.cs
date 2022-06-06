@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FransfordSystem.Migrations
 {
     [DbContext(typeof(FransforDbContext))]
-    [Migration("20220603143232_a")]
+    [Migration("20220606184739_a")]
     partial class a
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

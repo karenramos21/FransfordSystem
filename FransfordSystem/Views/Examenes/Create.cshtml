@@ -32,11 +32,12 @@
                 <span asp-validation-for="PrecioExamen" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Crear" class="btn btn-success" />
+                <input type="submit" value="Crear" class="btn btn-success" id="success"/>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="@Url.Action("Create", "Descripciones")" class="btn btn-primary" role="button" aria-pressed="true">Agregar detalles</a>
             </div>
         </form>
+        <div id="message"></div>
     </div>
 </div>
 
@@ -46,4 +47,16 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+       <script type="text/javascript">
+        $(document).ready(function () {
+            $('#success').click(function (e) {
+                e.preventDefault()
+                $('#message').html(`
+                <div class="alert alert-success fade in">
+                    <button type="button class="close close-alert" 
+                        data-dismiss="alert" aria-hidden="true">                       
+                    </button>This is a success message
+                </div>`);
+            })
+       </script>
 }
