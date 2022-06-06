@@ -1,0 +1,49 @@
+﻿@model FransfordSystem.Models.Descripcion
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Descripcion</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="idDescripcion" />
+            <div class="form-group">
+                <label asp-for="idExamen" class="control-label"></label>
+                <input asp-for="idExamen" class="form-control" />
+                <span asp-validation-for="idExamen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="descripcionExamen" class="control-label"></label>
+                <input asp-for="descripcionExamen" class="form-control" />
+                <span asp-validation-for="descripcionExamen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="valorMinimo" class="control-label"></label>
+                <input asp-for="valorMinimo" class="form-control" />
+                <span asp-validation-for="valorMinimo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="valorMaximo" class="control-label"></label>
+                <input asp-for="valorMaximo" class="form-control" />
+                <span asp-validation-for="valorMaximo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

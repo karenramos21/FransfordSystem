@@ -14,12 +14,12 @@ namespace FransfordSystem.Models
         [Required]
         public int idExamen { get; set; }
 
-        [Display(Name = "idCategoria")]
+        [Display(Name = "Categoria del examen")]
         [Required(ErrorMessage = "Este campo es obligatorio")]
         public int idCategoria { get; set; }
-        public Categoria categoria { get; set; }
+        public Categoria? categoria { get; set; }
 
-        public ICollection<Descripcion> descripcion { get; set; }
+        public ICollection<Descripcion>? descripcion { get; set; }
 
 
         [Display(Name = "Nombre de examen")]
@@ -27,8 +27,8 @@ namespace FransfordSystem.Models
         [RegularExpression(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙÑñ.-]+", ErrorMessage = "Ingrese un nombre valido")]
         public string nombreExamen { get; set; }
 
-        [Required]
-        [RegularExpression(@"^[0-9]{3}.[0-9]{2}$", ErrorMessage = "")]
-        public float PrecioExamen { get; set; }
+        [Display(Name = "Precio del examen")]
+        //[RegularExpression(@"^[0-9]{3}.[0-9]{2}$", ErrorMessage = "Ingrese una cantidad valida")]
+        public float? PrecioExamen { get; set; }
     }
 }
