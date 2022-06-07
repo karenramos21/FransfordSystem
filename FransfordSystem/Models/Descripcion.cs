@@ -26,11 +26,16 @@ namespace FransfordSystem.Models
         public string descripcionExamen { get; set; }
 
         [Display(Name = "Valor mínimo")]
-        [RegularExpression(@"^(1[0-5]|[0-9])$", ErrorMessage = "Valor invalido, debe ser de 0 a 15")]
+        [RegularExpression(@"^-?(([1-9]\d*)|0)(.0*[1-9](0*[1-9])*)?$", ErrorMessage = "Valor invalido, debe ser de 0 a 15")]
         public int? valorMinimo { get; set; }
 
         [Display(Name = "Valor máximo")]
-        [RegularExpression(@"^(1[0-5]|[0-9])$", ErrorMessage = "Valor invalido, debe ser de 0 a 15")]
+        [RegularExpression(@"^-?(([1-9]\d*)|0)(.0*[1-9](0*[1-9])*)?$", ErrorMessage = "Valor invalido, debe ser de 0 a 15")]
         public int? valorMaximo { get; set; }
+
+        [Display(Name = "Unidades")]
+        [Required(ErrorMessage = "Este campo es obligatorio")]
+        public int idUnidad { get; set; }
+        public Unidad? unidad { get; set; }
     }
 }

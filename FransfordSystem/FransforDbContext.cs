@@ -22,6 +22,7 @@ namespace FransfordSystem
         public DbSet<Categoria> Categoria { get; set; }
         public DbSet<Examen> Examen { get; set; }
         public DbSet<Descripcion> Descripcion { get; set; }
+        public DbSet<Unidad> Unidad { get; set; }
 
 
 

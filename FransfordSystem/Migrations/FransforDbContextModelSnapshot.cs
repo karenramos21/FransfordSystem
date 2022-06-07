@@ -104,6 +104,12 @@ namespace FransfordSystem.Migrations
                     b.Property<int>("idExamen")
                         .HasColumnType("int");
 
+                    b.Property<int>("idUnidad")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("unidadidUnidad")
+                        .HasColumnType("int");
+
                     b.Property<int?>("valorMaximo")
                         .HasColumnType("int");
 
@@ -113,6 +119,8 @@ namespace FransfordSystem.Migrations
                     b.HasKey("idDescripcion");
 
                     b.HasIndex("examenidExamen");
+
+                    b.HasIndex("unidadidUnidad");
 
                     b.ToTable("Descripcion");
                 });
@@ -126,6 +134,7 @@ namespace FransfordSystem.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idExamen"), 1L, 1);
 
                     b.Property<float?>("PrecioExamen")
+                        .IsRequired()
                         .HasColumnType("real");
 
                     b.Property<int?>("categoriaIdCategoria")
@@ -138,11 +147,32 @@ namespace FransfordSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("nombreMuestra")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("idExamen");
 
                     b.HasIndex("categoriaIdCategoria");
 
                     b.ToTable("Examen");
+                });
+
+            modelBuilder.Entity("FransfordSystem.Models.Unidad", b =>
+                {
+                    b.Property<int>("idUnidad")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idUnidad"), 1L, 1);
+
+                    b.Property<string>("nombreUnidad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("idUnidad");
+
+                    b.ToTable("Unidad");
                 });
 
             modelBuilder.Entity("FransfordSystem.Models.Usuario", b =>
@@ -380,7 +410,13 @@ namespace FransfordSystem.Migrations
                         .WithMany("descripcion")
                         .HasForeignKey("examenidExamen");
 
+                    b.HasOne("FransfordSystem.Models.Unidad", "unidad")
+                        .WithMany("descripcion")
+                        .HasForeignKey("unidadidUnidad");
+
                     b.Navigation("examen");
+
+                    b.Navigation("unidad");
                 });
 
             modelBuilder.Entity("FransfordSystem.Models.Examen", b =>
@@ -449,6 +485,11 @@ namespace FransfordSystem.Migrations
                 });
 
             modelBuilder.Entity("FransfordSystem.Models.Examen", b =>
+                {
+                    b.Navigation("descripcion");
+                });
+
+            modelBuilder.Entity("FransfordSystem.Models.Unidad", b =>
                 {
                     b.Navigation("descripcion");
                 });

@@ -61,7 +61,7 @@ namespace FransfordSystem.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("idExamen,idCategoria,nombreExamen,PrecioExamen")] Examen examen)
+        public async Task<IActionResult> Create([Bind("idExamen,idCategoria,nombreExamen,PrecioExamen,nombreMuestra")] Examen examen)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace FransfordSystem.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("idExamen,idCategoria,nombreExamen,PrecioExamen")] Examen examen)
+        public async Task<IActionResult> Edit(int id, [Bind("idExamen,idCategoria,nombreExamen,PrecioExamen,nombreMuestra")] Examen examen)
         {
             if (id != examen.idExamen)
             {
