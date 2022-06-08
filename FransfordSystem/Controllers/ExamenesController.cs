@@ -34,9 +34,21 @@ namespace FransfordSystem.Controllers
             {
                 return NotFound();
             }
-
+          
             var examen = await _context.Examen
                 .FirstOrDefaultAsync(m => m.idExamen == id);
+
+            //Descripciones de exámenes
+            //ViewBag.Descripciones = await _context.Descripcion.Select(x => x.idExamen == id).ToListAsync();
+            ViewBag.Descripciones = await _context.Descripcion.Where(o => o.idExamen == id).ToListAsync();
+            //ViewBag.Descripciones = await _context.Descripcion.Select
+            //ViewBag.Descripciones = await _context.Descripcion.ToListAsync();
+            //ViewBag.Descripciones = new SelectList(_context.Descripcion.
+            //Where(o => o.idExamen == id), "Descripcion", "Valor minimo", "Valor maximo");
+
+            //Nombre de la unidad
+            //ViewBag.Unidades = await _context.Unidad.Where(p => p.idUnidad == ).ToListAsync();
+
             if (examen == null)
             {
                 return NotFound();
