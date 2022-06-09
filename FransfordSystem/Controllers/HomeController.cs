@@ -52,6 +52,11 @@ namespace FransfordSystem.Controllers
         {
             return RedirectToAction("Index", "Clientes");
         }
+        public ActionResult IndexExamen()
+        {
+            return RedirectToAction("Index", "Examenes");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

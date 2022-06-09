@@ -53,7 +53,14 @@ namespace FransfordSystem.Controllers
             examenLista = (from examen in _context.Examen select examen).ToList();
             examenLista.Insert(0, new Examen { idExamen = 0, nombreExamen = "Select" });
             ViewBag.examenDeLista = examenLista;
-            return View();           
+
+            //Genera lista de unidades
+            List<Unidad> unidadLista = new List<Unidad>();
+            unidadLista = (from unidad in _context.Unidad select unidad).ToList();
+            unidadLista.Insert(0, new Unidad { idUnidad = 0, nombreUnidad = "Seleccionar" });
+            ViewBag.unidadDeLista = unidadLista;
+
+            return View();     
         }
 
         // POST: Descripciones/Create
@@ -61,7 +68,7 @@ namespace FransfordSystem.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("idDescripcion,idExamen,descripcionExamen,valorMinimo,valorMaximo")] Descripcion descripcion)
+        public async Task<IActionResult> Create([Bind("idDescripcion,idExamen,descripcionExamen,valorMinimo,valorMaximo,idUnidad")] Descripcion descripcion)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +100,7 @@ namespace FransfordSystem.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("idDescripcion,idExamen,descripcionExamen,valorMinimo,valorMaximo")] Descripcion descripcion)
+        public async Task<IActionResult> Edit(int id, [Bind("idDescripcion,idExamen,descripcionExamen,valorMinimo,valorMaximo,idUnidad")] Descripcion descripcion)
         {
             if (id != descripcion.idDescripcion)
             {
@@ -157,12 +164,17 @@ namespace FransfordSystem.Controllers
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(IndexExamen));
         }
 
         private bool DescripcionExists(int id)
         {
           return (_context.Descripcion?.Any(e => e.idDescripcion == id)).GetValueOrDefault();
+        }
+
+        public ActionResult IndexExamen()
+        {
+            return RedirectToAction("Index", "Examenes");
         }
     }
 }

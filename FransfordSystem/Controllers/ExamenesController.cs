@@ -19,6 +19,11 @@ namespace FransfordSystem.Controllers
             _context = context;
         }
 
+        public ActionResult EliminarDescripcion()
+        {
+            return RedirectToAction("Delete", "Descripciones");
+        }
+
         // GET: Examenes
         public async Task<IActionResult> Index()
         {
@@ -34,9 +39,21 @@ namespace FransfordSystem.Controllers
             {
                 return NotFound();
             }
-
+          
             var examen = await _context.Examen
                 .FirstOrDefaultAsync(m => m.idExamen == id);
+
+            //Descripciones de exámenes
+            //ViewBag.Descripciones = await _context.Descripcion.Select(x => x.idExamen == id).ToListAsync();
+            ViewBag.Descripciones = await _context.Descripcion.Where(o => o.idExamen == id).ToListAsync();
+            //ViewBag.Descripciones = await _context.Descripcion.Select
+            //ViewBag.Descripciones = await _context.Descripcion.ToListAsync();
+            //ViewBag.Descripciones = new SelectList(_context.Descripcion.
+            //Where(o => o.idExamen == id), "Descripcion", "Valor minimo", "Valor maximo");
+
+            //Nombre de la unidad
+            //ViewBag.Unidades = await _context.Unidad.Where(p => p.idUnidad == ).ToListAsync();
+
             if (examen == null)
             {
                 return NotFound();
@@ -61,7 +78,7 @@ namespace FransfordSystem.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("idExamen,idCategoria,nombreExamen,PrecioExamen")] Examen examen)
+        public async Task<IActionResult> Create([Bind("idExamen,idCategoria,nombreExamen,PrecioExamen,nombreMuestra")] Examen examen)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +116,7 @@ namespace FransfordSystem.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("idExamen,idCategoria,nombreExamen,PrecioExamen")] Examen examen)
+        public async Task<IActionResult> Edit(int id, [Bind("idExamen,idCategoria,nombreExamen,PrecioExamen,nombreMuestra")] Examen examen)
         {
             if (id != examen.idExamen)
             {
@@ -137,8 +154,12 @@ namespace FransfordSystem.Controllers
                 return NotFound();
             }
 
-            var examen = await _context.Examen
-                .FirstOrDefaultAsync(m => m.idExamen == id);
+            //var examen = _context.Examen.OrderBy(e => e.idExamen).Include(e => e.descripcion).First();
+            
+            var examen = await _context.Examen.FirstOrDefaultAsync(m => m.idExamen == id);
+
+            //Descripciones de exámenes
+            ViewBag.Descripciones = await _context.Descripcion.Where(o => o.idExamen == id).ToListAsync();
             if (examen == null)
             {
                 return NotFound();

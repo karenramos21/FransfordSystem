@@ -21,16 +21,21 @@ namespace FransfordSystem.Models
 
         public ICollection<Descripcion>? descripcion { get; set; }
 
-
         [Display(Name = "Nombre de examen")]
         [Required(ErrorMessage = "Este campo es obligatorio")]
         [RegularExpression(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙÑñ.-]+", ErrorMessage = "Ingrese un nombre valido")]
         public string nombreExamen { get; set; }
+
 
         [Display(Name = "Precio del examen")]
         [Range(0, 999.99)]
         [Required(ErrorMessage = "Este campo es obligatorio, ingrese cantidades entre 0 a 999.99")]
         //[RegularExpression(@"^[0-9]{3}.[0-9]{2}$", ErrorMessage = "Ingrese una cantidad valida")]
         public float? PrecioExamen { get; set; }
+
+        [Display(Name = "Nombre de muestra")]
+        [Required(ErrorMessage = "Este campo es obligatorio")]
+        [RegularExpression(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙÑñ.-]+", ErrorMessage = "Ingrese un nombre valido")]
+        public string nombreMuestra { get; set; }
     }
 }

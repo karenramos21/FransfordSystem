@@ -33,9 +33,41 @@
             <th>
             @Html.DisplayFor(model => model.PrecioExamen)
             </th>
-        </tr>     
+        </tr> 
+        
   
     </table>
+
+            
+            <br/>
+            <h2>Listado de descripciones del examen</h2>
+            <br/>
+            
+   
+        @foreach(Descripcion Descripcion in ViewBag.Descripciones)
+        {   
+
+            <table style="width:auto; height:20px" class="table table-condensed table-bordered table-hover">
+
+            <tr>
+            <th><label>Descripción del examen</label></th>
+            <th>@Descripcion.descripcionExamen</th>
+             </tr>
+
+            <tr>
+            <th><label>Valor mínimo de referencia</label></th>
+            <th>@Descripcion.valorMinimo</th>
+            </tr>
+
+            <tr>
+            <th><label>Valor máximo de referencia</label></th>
+            <th>@Descripcion.valorMaximo</th>
+            </tr>
+            
+            </table>
+            
+        }
+    
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.idExamen">Editar</a> |
