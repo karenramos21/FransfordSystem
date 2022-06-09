@@ -38,10 +38,47 @@
         </tr> 
   
     </table>
+
+    <br/>
+            <h2>Listado de descripciones del examen</h2>
+            <br/>
+            
+   
+        @foreach(Descripcion Descripcion in ViewBag.Descripciones)
+        {   
+
+            <table style="width:auto; height:20px" class="table table-condensed table-bordered table-hover">
+
+            <tr>
+            <th><label>Descripción del examen</label></th>
+            <th>@Descripcion.descripcionExamen</th>
+             </tr>
+
+            <tr>
+            <th><label>Valor mínimo de referencia</label></th>
+            <th>@Descripcion.valorMinimo</th>
+            </tr>
+
+            <tr>
+            <th><label>Valor máximo de referencia</label></th>
+            <th>@Descripcion.valorMaximo</th>
+            </tr>
+            <tr>
+                <th>
+                    <center>
+                        <a asp-controller="Descripciones" asp-action="Delete" asp-route-id="@Descripcion.idDescripcion" class="btn btn-outline-danger btn-sm" type="submit">Eliminar</a>
+                    </center>
+                </th>
+            </tr>
+            
+            
+            </table>
+            
+        }
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="idExamen" />
         <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-        <a asp-action="Index">Volver a la lista</a>
+        <a asp-action="Index">Volver a la lista</a> 
     </form>
 </div>

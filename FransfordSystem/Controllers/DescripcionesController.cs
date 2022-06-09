@@ -164,12 +164,17 @@ namespace FransfordSystem.Controllers
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(IndexExamen));
         }
 
         private bool DescripcionExists(int id)
         {
           return (_context.Descripcion?.Any(e => e.idDescripcion == id)).GetValueOrDefault();
+        }
+
+        public ActionResult IndexExamen()
+        {
+            return RedirectToAction("Index", "Examenes");
         }
     }
 }

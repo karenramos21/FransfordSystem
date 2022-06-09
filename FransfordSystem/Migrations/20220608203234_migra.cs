@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FransfordSystem.Migrations
 {
-    public partial class a : Migration
+    public partial class migra : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

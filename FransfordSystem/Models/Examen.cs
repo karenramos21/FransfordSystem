@@ -21,7 +21,6 @@ namespace FransfordSystem.Models
 
         public ICollection<Descripcion>? descripcion { get; set; }
 
-
         [Display(Name = "Nombre de examen")]
         [Required(ErrorMessage = "Este campo es obligatorio")]
         [RegularExpression(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙÑñ.-]+", ErrorMessage = "Ingrese un nombre valido")]

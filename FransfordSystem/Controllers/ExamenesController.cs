@@ -19,6 +19,11 @@ namespace FransfordSystem.Controllers
             _context = context;
         }
 
+        public ActionResult EliminarDescripcion()
+        {
+            return RedirectToAction("Delete", "Descripciones");
+        }
+
         // GET: Examenes
         public async Task<IActionResult> Index()
         {
@@ -149,8 +154,12 @@ namespace FransfordSystem.Controllers
                 return NotFound();
             }
 
-            var examen = await _context.Examen
-                .FirstOrDefaultAsync(m => m.idExamen == id);
+            //var examen = _context.Examen.OrderBy(e => e.idExamen).Include(e => e.descripcion).First();
+            
+            var examen = await _context.Examen.FirstOrDefaultAsync(m => m.idExamen == id);
+
+            //Descripciones de exámenes
+            ViewBag.Descripciones = await _context.Descripcion.Where(o => o.idExamen == id).ToListAsync();
             if (examen == null)
             {
                 return NotFound();
