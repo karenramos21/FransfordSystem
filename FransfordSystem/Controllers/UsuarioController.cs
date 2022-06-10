@@ -25,15 +25,30 @@ namespace FransfordSystem.Controllers
   
         public async Task<IActionResult> Index()
         {
-            return _context.Usuario != null ?
-                        View(await _context.Usuario.ToListAsync()) :
-                        Problem("Entity set 'FransforDbContext.Cliente'  is null.");
+            if (User.Identity.IsAuthenticated)
+            {
+                return _context.Usuario != null ?
+                       View(await _context.Usuario.ToListAsync()) :
+                       Problem("Entity set 'FransforDbContext.Cliente'  is null.");
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
+
         }
 
         public IActionResult Create()
         {
-            
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+
+                return View();
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
  
 
@@ -67,19 +82,27 @@ namespace FransfordSystem.Controllers
 
         public async Task<IActionResult> Details(string? id)
         {
+          if (User.Identity.IsAuthenticated)
+          {
             if (id == null || _context.Usuario == null)
             {
                 return NotFound();
             }
-
             var usuario = await _context.Usuario
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (usuario == null)
             {
                 return NotFound();
             }
-
             return View(usuario);
+          }
+
+
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
+
         }
 
         public async Task<IActionResult> Edit(string? id)

@@ -22,10 +22,16 @@ namespace FransfordSystem.Controllers
         //GET: Descripciones
         public async Task<IActionResult> Index()
         {
-  
-           return _context.Descripcion != null ? 
-                        View(await _context.Descripcion.ToListAsync()) :
-                        Problem("Entity set 'FransforDbContext.Descripcion'  is null.");
+            if(User.Identity.IsAuthenticated)
+            {
+                return _context.Descripcion != null ?
+                            View(await _context.Descripcion.ToListAsync()) :
+                            Problem("Entity set 'FransforDbContext.Descripcion'  is null.");
+            }
+            else
+            {
+                return Redirect("../Identity/Account/Login");
+            }
 
         }
 
@@ -75,19 +81,28 @@ namespace FransfordSystem.Controllers
         // GET: Descripciones/Create
         public IActionResult Create()
         {
-            //Genera lista de exámenes
-            List<Examen> examenLista = new List<Examen>();
-            examenLista = (from examen in _context.Examen select examen).ToList();
-            examenLista.Insert(0, new Examen { idExamen = 0, nombreExamen = "Select" });
-            ViewBag.examenDeLista = examenLista;
+            if (User.Identity.IsAuthenticated)
+            {
 
-            //Genera lista de unidades
-            List<Unidad> unidadLista = new List<Unidad>();
-            unidadLista = (from unidad in _context.Unidad select unidad).ToList();
-            unidadLista.Insert(0, new Unidad { idUnidad = 0, nombreUnidad = "Seleccionar" });
-            ViewBag.unidadDeLista = unidadLista;
+                //Genera lista de exámenes
+                List<Examen> examenLista = new List<Examen>();
+                examenLista = (from examen in _context.Examen select examen).ToList();
+                examenLista.Insert(0, new Examen { idExamen = 0, nombreExamen = "Select" });
+                ViewBag.examenDeLista = examenLista;
 
-            return View();     
+                //Genera lista de unidades
+                List<Unidad> unidadLista = new List<Unidad>();
+                unidadLista = (from unidad in _context.Unidad select unidad).ToList();
+                unidadLista.Insert(0, new Unidad { idUnidad = 0, nombreUnidad = "Seleccionar" });
+                ViewBag.unidadDeLista = unidadLista;
+
+                return View();
+            }
+            else
+            {
+                return Redirect("../Identity/Account/Login");
+            }
+
         }
 
         // POST: Descripciones/Create

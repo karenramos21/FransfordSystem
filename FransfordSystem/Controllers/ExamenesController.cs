@@ -22,50 +22,73 @@ namespace FransfordSystem.Controllers
         // GET: Examenes
         public async Task<IActionResult> Index()
         {
-            return _context.Examen != null ?
+            if (User.Identity.IsAuthenticated)
+            {
+                return _context.Examen != null ?
                         View(await _context.Examen.ToListAsync()) :
                         Problem("Entity set 'FransforDbContext.Examen'  is null.");
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // GET: Examenes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Examen == null)
+            if (User.Identity.IsAuthenticated)
             {
-                return NotFound();
+                if (id == null || _context.Examen == null)
+                {
+                    return NotFound();
+                }
+
+                var examen = await _context.Examen
+                    .FirstOrDefaultAsync(m => m.idExamen == id);
+
+                //Descripciones de exámenes
+                //ViewBag.Descripciones = await _context.Descripcion.Select(x => x.idExamen == id).ToListAsync();
+                ViewBag.Descripciones = await _context.Descripcion.Where(o => o.idExamen == id).ToListAsync();
+                //ViewBag.Descripciones = await _context.Descripcion.Select
+                //ViewBag.Descripciones = await _context.Descripcion.ToListAsync();
+                //ViewBag.Descripciones = new SelectList(_context.Descripcion.
+                //Where(o => o.idExamen == id), "Descripcion", "Valor minimo", "Valor maximo");
+
+                //Nombre de la unidad
+                //ViewBag.Unidades = await _context.Unidad.Where(p => p.idUnidad == ).ToListAsync();
+
+                if (examen == null)
+                {
+                    return NotFound();
+                }
+
+                return View(examen);
+
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
             }
 
-            var examen = await _context.Examen
-                .FirstOrDefaultAsync(m => m.idExamen == id);
-
-            //Descripciones de exámenes
-            //ViewBag.Descripciones = await _context.Descripcion.Select(x => x.idExamen == id).ToListAsync();
-            ViewBag.Descripciones = await _context.Descripcion.Where(o => o.idExamen == id).ToListAsync();
-            //ViewBag.Descripciones = await _context.Descripcion.Select
-            //ViewBag.Descripciones = await _context.Descripcion.ToListAsync();
-            //ViewBag.Descripciones = new SelectList(_context.Descripcion.
-            //Where(o => o.idExamen == id), "Descripcion", "Valor minimo", "Valor maximo");
-
-            //Nombre de la unidad
-            //ViewBag.Unidades = await _context.Unidad.Where(p => p.idUnidad == ).ToListAsync();
-
-            if (examen == null)
-            {
-                return NotFound();
-            }
-
-            return View(examen);
         }
 
         // GET: Examenes/Create
         public IActionResult Create()
         {
-            //Genera lista de categorias
-            List<Categoria> categoriaLista = new List<Categoria>();
-            categoriaLista = (from categoria in _context.Categoria select categoria).ToList();
-            categoriaLista.Insert(0, new Categoria { IdCategoria = 0, nombreCategoria = "Seleccionar" });
-            ViewBag.categoriaDeLista = categoriaLista;
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                //Genera lista de categorias
+                List<Categoria> categoriaLista = new List<Categoria>();
+                categoriaLista = (from categoria in _context.Categoria select categoria).ToList();
+                categoriaLista.Insert(0, new Categoria { IdCategoria = 0, nombreCategoria = "Seleccionar" });
+                ViewBag.categoriaDeLista = categoriaLista;
+                return View();
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // POST: Examenes/Create
@@ -87,23 +110,32 @@ namespace FransfordSystem.Controllers
         // GET: Examenes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Examen == null)
+            if (User.Identity.IsAuthenticated)
             {
-                return NotFound();
+
+                if (id == null || _context.Examen == null)
+                {
+                    return NotFound();
+                }
+
+                var examen = await _context.Examen.FindAsync(id);
+                if (examen == null)
+                {
+                    return NotFound();
+                }
+                //Genera lista de categorias
+                List<Categoria> categoriaLista = new List<Categoria>();
+                categoriaLista = (from categoria in _context.Categoria select categoria).ToList();
+                categoriaLista.Insert(0, new Categoria { IdCategoria = 0, nombreCategoria = "Seleccionar" });
+                ViewBag.categoriaDeLista = categoriaLista;
+
+                return View(examen);
+            }
+            else
+            {
+                return Redirect("../Identity/Account/Login");
             }
 
-            var examen = await _context.Examen.FindAsync(id);
-            if (examen == null)
-            {
-                return NotFound();
-            }
-            //Genera lista de categorias
-            List<Categoria> categoriaLista = new List<Categoria>();
-            categoriaLista = (from categoria in _context.Categoria select categoria).ToList();
-            categoriaLista.Insert(0, new Categoria { IdCategoria = 0, nombreCategoria = "Seleccionar" });
-            ViewBag.categoriaDeLista = categoriaLista;
-
-            return View(examen);
         }
 
         // POST: Examenes/Edit/5
