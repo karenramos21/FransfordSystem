@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FransfordSystem.Migrations
 {
     [DbContext(typeof(FransforDbContext))]
-    [Migration("20220610061730_Primera")]
-    partial class Primera
+    [Migration("20220610204012_migra2")]
+    partial class migra2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

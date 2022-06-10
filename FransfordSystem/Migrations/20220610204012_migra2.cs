@@ -4,7 +4,7 @@
 
 namespace FransfordSystem.Migrations
 {
-    public partial class Segunda : Migration
+    public partial class migra2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
