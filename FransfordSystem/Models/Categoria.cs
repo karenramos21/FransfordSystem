@@ -17,11 +17,6 @@ namespace FransfordSystem.Models
         [Required(ErrorMessage = "Este campo es obligatorio")]
         public string nombreCategoria { get; set; }
 
-        //Tipos de categoría
-        [Display(Name = "Tipos de categorías")]
-        [RegularExpression(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙÑñ.-]+", ErrorMessage = "Ingrese nombres con caracteres válidos")]
-        [Required(ErrorMessage = "Este campo es obligatorio")]
-        public string tipoCategoria { get; set; }
 
 
     }

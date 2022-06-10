@@ -19,13 +19,39 @@ namespace FransfordSystem.Controllers
             _context = context;
         }
 
-        // GET: Descripciones
+        //GET: Descripciones
         public async Task<IActionResult> Index()
         {
-              return _context.Descripcion != null ? 
-                          View(await _context.Descripcion.ToListAsync()) :
-                          Problem("Entity set 'FransforDbContext.Descripcion'  is null.");
+  
+           return _context.Descripcion != null ? 
+                        View(await _context.Descripcion.ToListAsync()) :
+                        Problem("Entity set 'FransforDbContext.Descripcion'  is null.");
+
         }
+
+        public async Task<IActionResult> Filtrado(int? id)
+        {
+
+
+            if (id == null || _context.Descripcion == null)
+            {
+                return NotFound();
+            }
+
+            var descripcion = await _context.Descripcion
+                .FirstOrDefaultAsync(m => m.idExamen == id);
+            ViewBag.Descripciones = await _context.Descripcion.Where(o => o.idExamen == id).ToListAsync();
+            if (descripcion == null)
+            {
+                return NotFound();
+            }
+
+            return View(descripcion);
+
+        }
+
+
+
 
         // GET: Descripciones/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -37,6 +63,7 @@ namespace FransfordSystem.Controllers
 
             var descripcion = await _context.Descripcion
                 .FirstOrDefaultAsync(m => m.idDescripcion == id);
+            
             if (descripcion == null)
             {
                 return NotFound();
@@ -125,7 +152,7 @@ namespace FransfordSystem.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return Redirect("../Filtrado/" + descripcion.idExamen);
             }
             return View(descripcion);
         }

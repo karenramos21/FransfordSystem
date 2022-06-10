@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FransfordSystem.Migrations
 {
     [DbContext(typeof(FransforDbContext))]
-    [Migration("20220609053150_Primera")]
+    [Migration("20220610061730_Primera")]
     partial class Primera
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,10 +33,6 @@ namespace FransfordSystem.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCategoria"), 1L, 1);
 
                     b.Property<string>("nombreCategoria")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("tipoCategoria")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

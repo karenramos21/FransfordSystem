@@ -55,7 +55,9 @@ namespace FransfordSystem.Controllers
                 usuario.genero = nuevo.genero;
 
                 var result = await _userManager.CreateAsync(usuario,nuevo.contra);
-                    return RedirectToAction("Index");
+                var u = await _userManager.FindByEmailAsync(usuario.Email);
+                await _userManager.AddToRoleAsync(u, "Trabajador");
+                return RedirectToAction("Index");
                              
             }
             return View();

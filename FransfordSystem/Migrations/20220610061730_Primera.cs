@@ -60,8 +60,7 @@ namespace FransfordSystem.Migrations
                 {
                     IdCategoria = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    nombreCategoria = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    tipoCategoria = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    nombreCategoria = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
