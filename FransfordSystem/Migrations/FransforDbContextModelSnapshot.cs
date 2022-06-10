@@ -106,11 +106,11 @@ namespace FransfordSystem.Migrations
                     b.Property<int?>("unidadidUnidad")
                         .HasColumnType("int");
 
-                    b.Property<int?>("valorMaximo")
-                        .HasColumnType("int");
+                    b.Property<float?>("valorMaximo")
+                        .HasColumnType("real");
 
-                    b.Property<int?>("valorMinimo")
-                        .HasColumnType("int");
+                    b.Property<float?>("valorMinimo")
+                        .HasColumnType("real");
 
                     b.HasKey("idDescripcion");
 

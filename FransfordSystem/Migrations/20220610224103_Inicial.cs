@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FransfordSystem.Migrations
 {
-    public partial class Primera : Migration
+    public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -242,8 +242,8 @@ namespace FransfordSystem.Migrations
                     idExamen = table.Column<int>(type: "int", nullable: false),
                     examenidExamen = table.Column<int>(type: "int", nullable: true),
                     descripcionExamen = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    valorMinimo = table.Column<int>(type: "int", nullable: true),
-                    valorMaximo = table.Column<int>(type: "int", nullable: true),
+                    valorMinimo = table.Column<float>(type: "real", nullable: true),
+                    valorMaximo = table.Column<float>(type: "real", nullable: true),
                     idUnidad = table.Column<int>(type: "int", nullable: false),
                     unidadidUnidad = table.Column<int>(type: "int", nullable: true)
                 },

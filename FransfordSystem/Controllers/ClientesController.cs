@@ -60,7 +60,7 @@ namespace FransfordSystem.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var user = _userManager.GetUserId(HttpContext.User);
-                return View();
+                return Redirect("Index");
             }
             return Redirect("Identity/Account/Login");
 

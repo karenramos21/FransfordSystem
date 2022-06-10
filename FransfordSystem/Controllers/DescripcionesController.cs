@@ -49,14 +49,24 @@ namespace FransfordSystem.Controllers
             ViewBag.Descripciones = await _context.Descripcion.Where(o => o.idExamen == id).ToListAsync();
             if (descripcion == null)
             {
-                return NotFound();
+                return Redirect("/Descripciones/Nodescripcion");
             }
 
             return View(descripcion);
 
         }
 
-
+        public IActionResult Nodescripcion()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return Redirect("../Identity/Account/Login");
+            }
+        }
 
 
         // GET: Descripciones/Details/5

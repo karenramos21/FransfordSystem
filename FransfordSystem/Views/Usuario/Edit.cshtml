@@ -4,7 +4,7 @@
 }
 
 
-<h1>Editar Usuario</h1>
+<h1>Editar Trabajadores</h1>
       
 <div class="row">
     <div class="col-md-4">
@@ -39,7 +39,7 @@
             <br>
             <div class="form-floating">
                 <label > DUI </label>
-                <input asp-for="dui" class="form-control" value="@Model.dui" autocomplete="Dui" aria-required="true" />
+                <input asp-for="dui" class="form-control" value="@Model.dui"  aria-required="true" />
             </div>
             <br>
             <div class="form-floating">
@@ -51,10 +51,11 @@
                 <label > Correo Electronico </label>
                 <input asp-for="correo" class="form-control" value="@Model.correo" aria-required="true" />
             </div>
+
             <br>
+
             <div class="form-floating">
-               <label > Nombre de Usuario </label>
-                <input asp-for="nombreUsuario" class="form-control" value="@Model.nombreUsuario" aria-required="true" />
+                <input asp-for="nombreUsuario" class="form-control" value="@Model.correo" aria-required="true" type="hidden" />
             </div>
             <div class="form-floating">
                 <input asp-for="id" class="form-control" value="@Model.id" type="hidden" aria-required="true" />
@@ -62,7 +63,7 @@
           
             <br>
             <div class="form-group">
-                <input type="submit" value="Registrar" class="btn btn-success" />
+                <input type="submit" value="Guardar" class="btn btn-success" />
             </div>
         </form>
         

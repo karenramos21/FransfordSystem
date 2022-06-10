@@ -102,7 +102,7 @@ namespace FransfordSystem.Controllers
             {
                 _context.Add(examen);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Create));
+                return RedirectToAction(nameof(Index));
             }
             return View(examen);
         }

@@ -53,7 +53,7 @@ namespace FransfordSystem.Controllers
  
 
         [HttpPost]
-        public async Task<IActionResult> registarUsuarioPost(RegistrarUsuarioViewModel nuevo)
+        public async Task<IActionResult> registrarUsuarioPost(RegistrarUsuarioViewModel nuevo)
         {
           
             if (ModelState.IsValid)
@@ -75,7 +75,7 @@ namespace FransfordSystem.Controllers
                 return RedirectToAction("Index");
                              
             }
-            return View();
+            return Redirect("Index");
         }
 
 
@@ -150,11 +150,13 @@ namespace FransfordSystem.Controllers
                 usuario.Email = nuevo.correo;
                 usuario.dui = nuevo.dui;
                 usuario.cuentaBancaria = nuevo.cuentaBancaria;
-                usuario.genero = nuevo.genero;                               
+                usuario.genero = nuevo.genero;
+                usuario.EmailConfirmed = true;
                 var result = await _userManager.UpdateAsync(usuario);
                 return RedirectToAction("Index");
 
             }
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
             return View();
         }
 

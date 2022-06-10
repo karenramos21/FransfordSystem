@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FransfordSystem.Migrations
 {
     [DbContext(typeof(FransforDbContext))]
-    [Migration("20220610061730_Primera")]
-    partial class Primera
+    [Migration("20220610224103_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -108,11 +108,11 @@ namespace FransfordSystem.Migrations
                     b.Property<int?>("unidadidUnidad")
                         .HasColumnType("int");
 
-                    b.Property<int?>("valorMaximo")
-                        .HasColumnType("int");
+                    b.Property<float?>("valorMaximo")
+                        .HasColumnType("real");
 
-                    b.Property<int?>("valorMinimo")
-                        .HasColumnType("int");
+                    b.Property<float?>("valorMinimo")
+                        .HasColumnType("real");
 
                     b.HasKey("idDescripcion");
 
