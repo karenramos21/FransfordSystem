@@ -81,18 +81,23 @@
 				</div><!--/.service-txt-->
 			</div><!--/.service-single-->
 		</div><!--/.col-->
-		<div class="col-sm-4 col-xs-12">
-			<div class="service-single text-center">
-				<div class="service-img">
-					<img src="/dist/img/Trabajador.png" alt="image of service" width="100" height="100"/>
-				</div><!--/.service-img-->
-				<div class="service-txt">
-					<h2>
-						<a asp-action="IndexUsuario">Usuario</a>
-					</h2>
-				</div><!--/.service-txt-->
-			</div><!--/.service-single-->
-		</div><!--/.col-->
+
+
+		@if (User.IsInRole("Administrador"))
+		{
+			<div class="col-sm-4 col-xs-12">
+				<div class="service-single text-center">
+					<div class="service-img">
+						<img src="/dist/img/Trabajador.png" alt="image of service" width="100" height="100"/>
+					</div><!--/.service-img-->
+					<div class="service-txt">
+						<h2>
+							<a asp-action="IndexUsuario">Usuario</a>
+						</h2>
+					</div><!--/.service-txt-->
+				</div><!--/.service-single-->
+			</div><!--/.col-->
+		}
 		<div class="col-sm-4 col-xs-12">
 			<div class="service-single text-center">
 				<div class="service-img">

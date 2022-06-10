@@ -25,9 +25,15 @@ namespace FransfordSystem.Controllers
         // GET: Clientes
         public async Task<IActionResult> Index()
         {
-              return _context.Cliente != null ? 
-                          View(await _context.Cliente.ToListAsync()) :
-                          Problem("Entity set 'FransforDbContext.Cliente'  is null.");
+            if (User.Identity.IsAuthenticated)
+            {
+
+                return _context.Cliente != null ?
+                              View(await _context.Cliente.ToListAsync()) :
+                              Problem("Entity set 'FransforDbContext.Cliente'  is null.");
+            }
+            return Redirect("Identity/Account/Login");
+
         }
 
         // GET: Clientes/Details/5
@@ -51,10 +57,13 @@ namespace FransfordSystem.Controllers
         // GET: Clientes/Create
         public IActionResult Create()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = _userManager.GetUserId(HttpContext.User);
+                return View();
+            }
+            return Redirect("Identity/Account/Login");
 
-            var user =  _userManager.GetUserId(HttpContext.User); 
-
-            return View();
         }
 
         // POST: Clientes/Create

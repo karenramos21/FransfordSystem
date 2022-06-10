@@ -62,17 +62,24 @@ namespace FransfordSystem.Controllers
 
         public IActionResult Desarrollo()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+
+            return Redirect("Identity/Account/Login");
+
 
         }
 
-
-
-
-
         public IActionResult Privacy()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+
+            return Redirect("Identity/Account/Login");
         }
 
         public ActionResult IndexCliente()
