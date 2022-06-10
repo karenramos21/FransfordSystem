@@ -19,11 +19,6 @@ namespace FransfordSystem.Controllers
             _context = context;
         }
 
-        public ActionResult EliminarDescripcion()
-        {
-            return RedirectToAction("Delete", "Descripciones");
-        }
-
         // GET: Examenes
         public async Task<IActionResult> Index()
         {
@@ -178,9 +173,15 @@ namespace FransfordSystem.Controllers
                 return Problem("Entity set 'FransforDbContext.Examen'  is null.");
             }
             var examen = await _context.Examen.FindAsync(id);
+            var descripcion = await _context.Descripcion.Where(d => d.idExamen == id).FirstOrDefaultAsync();
+            //var descripcion = await _context.Examen.OrderBy(d => d.idExamen == id).Include(d => d.descripcion).FirstAsync();
             if (examen != null)
             {
                 _context.Examen.Remove(examen);
+                if(descripcion != null)
+                {
+                    _context.Descripcion.Remove(descripcion);
+                }
             }
 
             await _context.SaveChangesAsync();
