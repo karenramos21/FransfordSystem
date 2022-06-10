@@ -10,32 +10,40 @@
     <h4>Consulta de la información completa del registro de los examenes</h4>
     <hr />
     <table style="width:auto; height:20px" class="table table-condensed table-bordered table-hover">
-        <tr>       
+        <tr>
             <th>
-            @Html.DisplayNameFor(model => model.idCategoria)
-            </th>            
+                @Html.DisplayNameFor(model => model.idCategoria)
+            </th>
             <th>
-            @Html.DisplayFor(model => model.idCategoria)
+                @Html.DisplayFor(model => model.idCategoria)
             </th>
         </tr>
-        <tr>       
+        <tr>
             <th>
-            @Html.DisplayNameFor(model => model.nombreExamen)
-            </th>          
+                @Html.DisplayNameFor(model => model.nombreExamen)
+            </th>
             <th>
-            @Html.DisplayFor(model => model.nombreExamen)
+                @Html.DisplayFor(model => model.nombreExamen)
             </th>
         </tr>
-        <tr>       
+        <tr>
             <th>
-            @Html.DisplayNameFor(model => model.PrecioExamen)
-            </th>             
-            <th>
-            @Html.DisplayFor(model => model.PrecioExamen)
+                @Html.DisplayNameFor(model => model.PrecioExamen)
             </th>
-        </tr> 
-        
-  
+            <th>
+                @Html.DisplayFor(model => model.PrecioExamen)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombreExamen)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.nombreMuestra)
+            </th>
+        </tr>
+
+
     </table>
 
             
@@ -44,7 +52,7 @@
             <br/>
             
    
-        @foreach(Descripcion Descripcion in ViewBag.Descripciones)
+         @foreach(Descripcion Descripcion in ViewBag.Descripciones)
         {   
 
             <table style="width:auto; height:20px" class="table table-condensed table-bordered table-hover">

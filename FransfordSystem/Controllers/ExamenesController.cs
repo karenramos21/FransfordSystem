@@ -27,9 +27,9 @@ namespace FransfordSystem.Controllers
         // GET: Examenes
         public async Task<IActionResult> Index()
         {
-              return _context.Examen != null ? 
-                          View(await _context.Examen.ToListAsync()) :
-                          Problem("Entity set 'FransforDbContext.Examen'  is null.");
+            return _context.Examen != null ?
+                        View(await _context.Examen.ToListAsync()) :
+                        Problem("Entity set 'FransforDbContext.Examen'  is null.");
         }
 
         // GET: Examenes/Details/5
@@ -39,7 +39,7 @@ namespace FransfordSystem.Controllers
             {
                 return NotFound();
             }
-          
+
             var examen = await _context.Examen
                 .FirstOrDefaultAsync(m => m.idExamen == id);
 
@@ -155,7 +155,7 @@ namespace FransfordSystem.Controllers
             }
 
             //var examen = _context.Examen.OrderBy(e => e.idExamen).Include(e => e.descripcion).First();
-            
+
             var examen = await _context.Examen.FirstOrDefaultAsync(m => m.idExamen == id);
 
             //Descripciones de exámenes
@@ -182,14 +182,14 @@ namespace FransfordSystem.Controllers
             {
                 _context.Examen.Remove(examen);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ExamenExists(int id)
         {
-          return (_context.Examen?.Any(e => e.idExamen == id)).GetValueOrDefault();
+            return (_context.Examen?.Any(e => e.idExamen == id)).GetValueOrDefault();
         }
     }
 }

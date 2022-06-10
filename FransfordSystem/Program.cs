@@ -2,19 +2,34 @@ using FransfordSystem;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using FransfordSystem.Models;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
+//Llenar base
+
+
+var contextOptions = new DbContextOptionsBuilder<FransforDbContext>()
+    .UseSqlServer("Server = localhost; Database = Probando; Trusted_Connection = True; ")
+    .Options;
+using var context = new FransforDbContext(contextOptions);
+
+DbInit.Iniz(context);
+
+
+
+
+
 string connString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<FransforDbContext>(options =>
     options.UseSqlServer(connString));;
 
 builder.Services.AddDefaultIdentity<Usuario>(options => options.SignIn.RequireConfirmedAccount = true)
+.AddRoles<IdentityRole>()   
     .AddEntityFrameworkStores<FransforDbContext>();;
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
-
 builder.Services.AddMvc();
 
 

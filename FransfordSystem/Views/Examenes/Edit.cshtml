@@ -33,13 +33,21 @@
                 <span asp-validation-for="PrecioExamen" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-success" />
+                <label asp-for="nombreMuestra" class="control-label"></label>
+                <input asp-for="nombreMuestra" class="form-control" placeholder="" />
+                <span asp-validation-for="nombreMuestra" class="text-danger"></span>
             </div>
+
+        <div class="form-group">
+            <input type="submit" value="Guardar" class="btn btn-success" />
+        </div>
         </form>
     </div>
 </div>
 
 <div>
+    <a  asp-controller="Descripciones" asp-action="Filtrado" asp-route-id=@Model.idExamen>Editar descripciones</a>
+     <br />
     <a asp-action="Index">Volver a la lista</a>
 </div>
 
