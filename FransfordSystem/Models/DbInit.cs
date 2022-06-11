@@ -118,11 +118,11 @@ namespace FransfordSystem.Models
             {
                 var descripcion = new Descripcion[]
                       {
-                    new Descripcion{idExamen=1,descripcionExamen="Hormona Adrenocorticotropa",valorMinimo=7,valorMaximo=9,idUnidad=1},
-                    new Descripcion{idExamen=2,descripcionExamen="Fase Folicular",valorMinimo=3,valorMaximo=8,idUnidad=2},
-                    new Descripcion{idExamen=3,descripcionExamen="Ciclo Medio",valorMinimo=4,valorMaximo=13,idUnidad=2},
-                    new Descripcion{idExamen=4,descripcionExamen="Fase Lutea Media",valorMinimo=1,valorMaximo=12,idUnidad=2},
-                    new Descripcion{idExamen=5,descripcionExamen="Post-Menopausia",valorMinimo=12,valorMaximo=14,idUnidad=2},
+                    new Descripcion{idExamen=1,descripcionExamen="Hormona Adrenocorticotropa",valorMinimo=7f,valorMaximo=9f,idUnidad=1},
+                    new Descripcion{idExamen=2,descripcionExamen="Fase Folicular",valorMinimo=3f,valorMaximo=8f,idUnidad=2},
+                    new Descripcion{idExamen=3,descripcionExamen="Ciclo Medio",valorMinimo=4f,valorMaximo=13f,idUnidad=2},
+                    new Descripcion{idExamen=4,descripcionExamen="Fase Lutea Media",valorMinimo=1f,valorMaximo=12f,idUnidad=2},
+                    new Descripcion{idExamen=5,descripcionExamen="Post-Menopausia",valorMinimo=12f,valorMaximo=14f,idUnidad=2},
 
                       };
                 foreach (Descripcion Des in descripcion)

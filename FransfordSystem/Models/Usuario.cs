@@ -36,7 +36,7 @@ namespace FransfordSystem.Models
         public string? dui { get; set; }
 
         [Display(Name = "Cuenta Bancaria")]
-        [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "ingrese una cuenta bancaria valida")]
+        [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Ingrese una cuenta bancaria valida")]
         //[Required(ErrorMessage = "Este campo es obligatorio")]
         public int? cuentaBancaria { get; set; }
 

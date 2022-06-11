@@ -12,7 +12,7 @@ namespace FransfordSystem.Models
         public ICollection<Examen> examen { get; set; }
 
         //Nombre de la categoría
-        [Display(Name = "Nombres de las categorías")]
+        [Display(Name = "Nombre de la categoria")]
         [RegularExpression(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙÑñ.-]+", ErrorMessage = "Ingrese nombres con caracteres válidos")]
         [Required(ErrorMessage = "Este campo es obligatorio")]
         public string nombreCategoria { get; set; }

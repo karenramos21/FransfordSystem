@@ -23,7 +23,6 @@ namespace FransfordSystem.Models
 
         [Display(Name = "Nombre de examen")]
         [Required(ErrorMessage = "Este campo es obligatorio")]
-        [RegularExpression(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙÑñ.-]+", ErrorMessage = "Ingrese un nombre valido")]
         public string nombreExamen { get; set; }
 
 
@@ -33,7 +32,7 @@ namespace FransfordSystem.Models
         //[RegularExpression(@"^[0-9]{3}.[0-9]{2}$", ErrorMessage = "Ingrese una cantidad valida")]
         public float? PrecioExamen { get; set; }
 
-        [Display(Name = "Nombre de muestra")]
+        [Display(Name = "Tipo de muestra")]
         [Required(ErrorMessage = "Este campo es obligatorio")]
         [RegularExpression(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙÑñ.-]+", ErrorMessage = "Ingrese un nombre valido")]
         public string nombreMuestra { get; set; }

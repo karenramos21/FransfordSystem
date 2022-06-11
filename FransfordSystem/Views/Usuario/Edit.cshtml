@@ -20,6 +20,7 @@
             <div class="form-floating">
                 <label > Apellido del Trabajador</label>
                 <input asp-for="apellido" class="form-control" value="@Model.apellido" aria-required="true" />
+                
             </div>
             <br>
             <div class="form-floating">
@@ -40,16 +41,19 @@
             <div class="form-floating">
                 <label > DUI </label>
                 <input asp-for="dui" class="form-control" value="@Model.dui"  aria-required="true" />
+                <span asp-validation-for="dui" class="text-danger"></span>
             </div>
             <br>
             <div class="form-floating">
                 <label > Cuenta Bancaria </label>
                 <input asp-for="cuentaBancaria" class="form-control" value="@Model.cuentaBancaria" aria-required="true" />
+                <span asp-validation-for="cuentaBancaria" class="text-danger"></span>
             </div>
             <br>
             <div class="form-floating">
                 <label > Correo Electronico </label>
                 <input asp-for="correo" class="form-control" value="@Model.correo" aria-required="true" />
+                <span asp-validation-for="correo" class="text-danger"></span>
             </div>
 
             <br>
