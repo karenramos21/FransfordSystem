@@ -15,10 +15,6 @@ using var context = new FransforDbContext(contextOptions);
 
 DbInit.Iniz(context);
 
-
-
-
-
 string connString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<FransforDbContext>(options =>
     options.UseSqlServer(connString));;
