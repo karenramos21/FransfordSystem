@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 var contextOptions = new DbContextOptionsBuilder<FransforDbContext>()
-    .UseSqlServer("Server = localhost; Database = FransfordDb; Trusted_Connection = True; ")
+    .UseSqlServer("Data Source=SQL8002.site4now.net;Initial Catalog=db_a884ef_dsi;User Id=db_a884ef_dsi_admin;Password=dsi1152022; ")
     .Options;
 using var context = new FransforDbContext(contextOptions);
 

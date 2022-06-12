@@ -34,10 +34,10 @@ namespace FransfordSystem.Controllers
                     apellidoTrabajador = "Fransford",
                     fechaNacimiento = DateTime.Now,
                     genero = 'M',
-                    UserName = "licenciadoedwinromero@yahoo.com",
-                    NormalizedUserName = "LICENCIADOEDWINROMERO@YAHOO.COM",
-                    Email = "licenciadoedwinromero@yahoo.com",
-                    NormalizedEmail = "LICENCIADOEDWINROMERO@YAHOO.COM",
+                    UserName = "administrador@gmail.com",
+                    NormalizedUserName = "ADMINISTRADOR@GMAIL.COM",
+                    Email = "administrador@gmail.com",
+                    NormalizedEmail = "ADMINISTRADOR@GMAIL.COM",
                     EmailConfirmed = true,
                     PhoneNumberConfirmed = false,
                     TwoFactorEnabled = false,
@@ -101,9 +101,6 @@ namespace FransfordSystem.Controllers
         {
             return RedirectToAction("Index", "Usuario");
         }
-
-
-
 
     }
 }
