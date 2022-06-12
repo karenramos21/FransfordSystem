@@ -32,7 +32,32 @@ namespace FransfordSystem.Models
                     new Unidad{nombreUnidad="X mm^3"},
                     new Unidad{nombreUnidad="mcg"},
                     new Unidad{nombreUnidad="mc^3"},
-                    new Unidad{nombreUnidad="UG/DL"}
+                    new Unidad{nombreUnidad="UG/DL"},
+                    new Unidad{nombreUnidad="ng/mL"},
+                    new Unidad{nombreUnidad="IU/L"},
+                    new Unidad{nombreUnidad="uUI/mL"},
+                    new Unidad{nombreUnidad="ng/dL"},
+                    new Unidad{nombreUnidad="UI/mL"},
+                    new Unidad{nombreUnidad="IU/mL"},
+                    new Unidad{nombreUnidad="GPL U/mL"},
+                    new Unidad{nombreUnidad="mg/L"},
+                    new Unidad{nombreUnidad="U/mL"},
+                    new Unidad{nombreUnidad="IgM"},
+                    new Unidad{nombreUnidad="IgG"},
+                    new Unidad{nombreUnidad="g/dL"},
+                    new Unidad{nombreUnidad="pg"},
+                    new Unidad{nombreUnidad="g/L"},
+                    new Unidad{nombreUnidad="fL"},
+                    new Unidad{nombreUnidad="uiU/mL"},
+                    new Unidad{nombreUnidad="uU/mL"},
+                    new Unidad{nombreUnidad="mg/24 horas"},
+                    new Unidad{nombreUnidad="meq/L"},
+                    new Unidad{nombreUnidad="segundos"},
+                    new Unidad{nombreUnidad="mL"},
+                    new Unidad{nombreUnidad="mL/minuto"},
+                    new Unidad{nombreUnidad="mm/h"},
+                    new Unidad{nombreUnidad="minuto"},
+                    new Unidad{nombreUnidad="x mL"},
                 };
                 foreach (Unidad Un in unidad)
                 {
@@ -101,7 +126,10 @@ namespace FransfordSystem.Models
                     new Examen{idCategoria=1,nombreExamen="FSH",PrecioExamen=2,nombreMuestra="SANGRE"},
                     new Examen{idCategoria=2,nombreExamen="FTA/ABS",PrecioExamen=3,nombreMuestra="SANGRE"},
                     new Examen{idCategoria=3,nombreExamen="FULL",PrecioExamen=4,nombreMuestra="SANGRE"},
-                    new Examen{idCategoria=3,nombreExamen="GAMMA",PrecioExamen=5,nombreMuestra="SANGRE"}
+                    new Examen{idCategoria=3,nombreExamen="GAMMA",PrecioExamen=5,nombreMuestra="SANGRE"},
+                    new Examen{idCategoria=3,nombreExamen="Glucosa",PrecioExamen=5,nombreMuestra="SANGRE"},
+                    new Examen{idCategoria=4,nombreExamen="Gota Gruesa",PrecioExamen=5,nombreMuestra="SANGRE"},
+                    new Examen{idCategoria=5,nombreExamen="Directo GRAM",PrecioExamen=5,nombreMuestra="HECES"},
                     };
                 foreach (Examen Ex in examen)
                 {
@@ -120,10 +148,19 @@ namespace FransfordSystem.Models
                       {
                     new Descripcion{idExamen=1,descripcionExamen="Hormona Adrenocorticotropa",valorMinimo=7f,valorMaximo=9f,idUnidad=1},
                     new Descripcion{idExamen=2,descripcionExamen="Fase Folicular",valorMinimo=3f,valorMaximo=8f,idUnidad=2},
-                    new Descripcion{idExamen=3,descripcionExamen="Ciclo Medio",valorMinimo=4f,valorMaximo=13f,idUnidad=2},
-                    new Descripcion{idExamen=4,descripcionExamen="Fase Lutea Media",valorMinimo=1f,valorMaximo=12f,idUnidad=2},
-                    new Descripcion{idExamen=5,descripcionExamen="Post-Menopausia",valorMinimo=12f,valorMaximo=14f,idUnidad=2},
-
+                    new Descripcion{idExamen=2,descripcionExamen="Ciclo Medio",valorMinimo=4f,valorMaximo=13f,idUnidad=2},
+                    new Descripcion{idExamen=2,descripcionExamen="Fase Lutea Media",valorMinimo=1f,valorMaximo=12f,idUnidad=2},
+                    new Descripcion{idExamen=2,descripcionExamen="Post-Menopausia",valorMinimo=12f,valorMaximo=14f,idUnidad=2},
+                    new Descripcion{idExamen=3,descripcionExamen="Anticuerpos Treponemico Fluorecentes"},
+                    new Descripcion{idExamen=4,descripcionExamen="Glucosa",valorMinimo=60f,valorMaximo=110f,idUnidad=3},
+                    new Descripcion{idExamen=4,descripcionExamen="Colesterol",valorMinimo=0f,valorMaximo=200f,idUnidad=3},
+                    new Descripcion{idExamen=4,descripcionExamen="Triglicerido",valorMinimo=0f,valorMaximo=150f,idUnidad=3},
+                    new Descripcion{idExamen=4,descripcionExamen="Colesterol LDL",valorMinimo=0f,valorMaximo=150f,idUnidad=3},
+                    new Descripcion{idExamen=4,descripcionExamen="Colesterol HDL",valorMinimo=59f,valorMaximo=80f,idUnidad=3},
+                    new Descripcion{idExamen=5,descripcionExamen="Gamma Glutamil Transpeptidasa",valorMinimo=5f,valorMaximo=36f,idUnidad=5},
+                    new Descripcion{idExamen=6,descripcionExamen="Glucosa",valorMinimo=60f,valorMaximo=110f,idUnidad=3},
+                    new Descripcion{idExamen=7,descripcionExamen="Gota Gruesa"},
+                    new Descripcion{idExamen=7,descripcionExamen="Directo GRAM"},
                       };
                 foreach (Descripcion Des in descripcion)
                 {
