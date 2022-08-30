@@ -36,5 +36,10 @@ namespace FransfordSystem.Models
         [Required(ErrorMessage = "Este campo es obligatorio")]
         [RegularExpression(@"[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙÑñ.-]+", ErrorMessage = "Ingrese un nombre valido")]
         public string nombreMuestra { get; set; }
+
+
+        public ICollection<ReporteExamen>? reporteExamenes { get; set; }
     }
+
+
 }
