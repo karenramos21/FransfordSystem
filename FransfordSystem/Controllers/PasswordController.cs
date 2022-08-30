@@ -101,11 +101,8 @@ namespace FransfordSystem.Controllers
                     var token = await _userManager.GeneratePasswordResetTokenAsync(usuario);
 
                     var result = await _userManager.ResetPasswordAsync(usuario, token,cambiar.nuevaContra);
-                    return RedirectToAction("Identity/Account/Login");
+                    return Redirect("../Identity/Account/Login");
                 }
-
-
-
 
                 return View(cambiar);
             }
